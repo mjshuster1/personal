@@ -31,25 +31,32 @@ local sessions alike. Both routes below put this repo's skills there
 straight from git, so there is nothing to upload and nothing to drift.
 
 **Cloud sessions.** The cloud environment's setup script (environment
-settings > Setup script) clones this repo at session start and copies
-`skills/` into `~/.claude/skills/`. It needs a read-only GitHub token for
-this one repo in the environment variable `PERSONAL_SKILLS_TOKEN`. It writes
-the commit it loaded to `~/.claude/skills/.personal-skills`, and never fails
-the setup if the clone fails.
+settings > Setup script) downloads this repo through the GitHub API at
+session start and copies `skills/` into `~/.claude/skills/`. Auth is an
+environment API credential: Bearer, allowed website `api.github.com` only,
+holding a fine-grained token with read-only Contents access to this repo.
+Sessions never see the token. The script writes what it loaded to
+`~/.claude/skills/.personal-skills` and never fails the setup. Verified
+2026-10-01: a fresh session in the Default environment loaded all three
+skills from commit `ed6f49e`.
+
+Don't widen the credential to `github.com`: that would put this token on
+every session's normal git traffic.
 
 ```bash
+#!/bin/bash
 # Personal skills from mjshuster1/personal. Never fails the setup.
-if [ -n "${PERSONAL_SKILLS_TOKEN:-}" ]; then
-  mkdir -p "$HOME/.claude/skills"
-  d="$(mktemp -d)"
-  if git clone -q --depth 1 "https://x-access-token:${PERSONAL_SKILLS_TOKEN}@github.com/mjshuster1/personal" "$d/personal"; then
-    cp -r "$d/personal/skills/." "$HOME/.claude/skills/"
-    git -C "$d/personal" log -1 --format='%h %cI' > "$HOME/.claude/skills/.personal-skills"
-  else
-    echo "clone failed" > "$HOME/.claude/skills/.personal-skills"
-  fi
-  rm -rf "$d"
+# Auth comes from the environment's API credential for api.github.com.
+mkdir -p "$HOME/.claude/skills"
+d="$(mktemp -d)"
+code=$(curl -sL -m 60 -o "$d/p.tgz" -w '%{http_code}' -H 'Accept: application/vnd.github+json' https://api.github.com/repos/mjshuster1/personal/tarball/main)
+if [ "$code" = "200" ] && tar -xzf "$d/p.tgz" -C "$d" && cp -r "$d"/mjshuster1-personal-*/skills/. "$HOME/.claude/skills/"; then
+  echo "loaded $(cd "$d" && ls -d mjshuster1-personal-*) $(date -u +%FT%TZ)" > "$HOME/.claude/skills/.personal-skills"
+else
+  echo "failed http=$code $(date -u +%FT%TZ)" > "$HOME/.claude/skills/.personal-skills"
 fi
+rm -rf "$d"
+exit 0
 ```
 
 **Local sessions (Windows).** Clone this repo to
