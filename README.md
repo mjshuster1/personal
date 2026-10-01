@@ -68,7 +68,8 @@ for %s in (personal-voice de-slop document-review) do mklink /J "%USERPROFILE%\.
 ```
 
 A new skill folder needs its own link. A `git pull` in the clone updates
-every local session. The pull will be added to the daily scheduled task; until then, pull by hand.
+every local session. The daily `ai-os-metrics-extract` task runs `git pull --ff-only` in the clone, so
+you rarely need to pull by hand.
 
 **Cowork and claude.ai chat** only read skills uploaded to the claude.ai
 account (Settings > Skills). Upload a zip of a skill folder there only if
