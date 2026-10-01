@@ -20,23 +20,50 @@ customer, or industry.
 ## This repo is the only place to edit
 
 Each skill folder uses the `SKILL.md` format (a markdown file with a short
-name/description header). Any model can read it as plain markdown.
+name/description header). Any model can read it as plain markdown. Don't
+copy these files into other repos; if a repo needs the voice, it loads the
+`personal-voice` skill.
 
-**Delivery to Claude:** each folder is zipped and uploaded to the claude.ai
-account (Settings > Skills). That uploaded copy is what runs in cloud
-sessions, local Claude Code sessions (synced to `~/.claude/skills/synced/`),
-and Cowork. The upload is manual, so after any edit here:
+## How the skills reach sessions
 
-1. Zip the changed skill folder.
-2. Upload it in claude.ai Settings > Skills, replacing the old one.
+Claude Code loads any skill folder in `~/.claude/skills/`, in cloud and
+local sessions alike. Both routes below put this repo's skills there
+straight from git, so there is nothing to upload and nothing to drift.
 
-A daily check in `master-orchestrator` (being added) compares the synced copies on Matt's
-machine against this repo and flags any difference. Cloud sessions can run a
-stale copy until that check catches it.
+**Cloud sessions.** The cloud environment's setup script (environment
+settings > Setup script) clones this repo at session start and copies
+`skills/` into `~/.claude/skills/`. It needs a read-only GitHub token for
+this one repo in the environment variable `PERSONAL_SKILLS_TOKEN`. It writes
+the commit it loaded to `~/.claude/skills/.personal-skills`, and never fails
+the setup if the clone fails.
 
-**No other copies.** Don't copy these files into other repos. If a repo needs
-the voice, it loads the `personal-voice` skill.
+```bash
+# Personal skills from mjshuster1/personal. Never fails the setup.
+if [ -n "${PERSONAL_SKILLS_TOKEN:-}" ]; then
+  mkdir -p "$HOME/.claude/skills"
+  d="$(mktemp -d)"
+  if git clone -q --depth 1 "https://x-access-token:${PERSONAL_SKILLS_TOKEN}@github.com/mjshuster1/personal" "$d/personal"; then
+    cp -r "$d/personal/skills/." "$HOME/.claude/skills/"
+    git -C "$d/personal" log -1 --format='%h %cI' > "$HOME/.claude/skills/.personal-skills"
+  else
+    echo "clone failed" > "$HOME/.claude/skills/.personal-skills"
+  fi
+  rm -rf "$d"
+fi
+```
 
-**Delivery to another tool later:** point that tool at these same files
-(its equivalent of global instructions or skills). Only the delivery step
-changes.
+**Local sessions (Windows).** Clone this repo to
+`C:\Users\mjshu\Dev\AI_OS\personal`, then link each skill into
+`~/.claude/skills/` once:
+
+```bat
+for %s in (personal-voice de-slop document-review) do mklink /J "%USERPROFILE%\.claude\skills\%s" "C:\Users\mjshu\Dev\AI_OS\personal\skills\%s"
+```
+
+A new skill folder needs its own link. A `git pull` in the clone updates
+every local session. The pull will be added to the daily scheduled task; until then, pull by hand.
+
+**Cowork and claude.ai chat** only read skills uploaded to the claude.ai
+account (Settings > Skills). Upload a zip of a skill folder there only if
+it's needed in those two places, and re-upload after edits. Nothing checks
+that copy.
