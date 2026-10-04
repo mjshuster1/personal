@@ -12,6 +12,15 @@ markdown, nothing tied to one model or tool.
 | `skills/de-slop/` | rewrites a draft to strip AI tells and pull it toward `personal-voice`, plus a company `voice.md` when the repo has one |
 | `skills/document-review/` | reviews a document in four passes, always in this order: substance, slop, bloat, clarity |
 
+Session rules, hooks and agents, installed into `~/.claude/` by
+`install.js`:
+
+| file | what it does |
+|---|---|
+| `claude/CLAUDE.md` | user-level rules for every session: open each reply with the Eastern time, post timestamped lines when background agents launch and finish |
+| `hooks/et-time.js` | on each message, gives Claude the current Eastern time |
+| `agents/karpathy-structural-review.md` | the structural reviewer master-orchestrator's `AGENTS.md` requires before any structural change |
+
 Company voice stays with the company: Cuepri's `voice.md` and
 `voice-samples/` live in `gtm-vault/vault/Cuepri/`, and layer on top of
 `personal-voice`. Nothing in this repo may name a company, product,
@@ -55,6 +64,7 @@ if [ "$code" = "200" ] && tar -xzf "$d/p.tgz" -C "$d" && cp -r "$d"/mjshuster1-p
 else
   echo "failed http=$code $(date -u +%FT%TZ)" > "$HOME/.claude/skills/.personal-skills"
 fi
+node "$d"/mjshuster1-personal-*/install.js >> "$HOME/.claude/skills/.personal-skills" 2>&1 || true
 rm -rf "$d"
 exit 0
 ```
@@ -66,6 +76,19 @@ exit 0
 ```bat
 for %s in (personal-voice de-slop document-review) do mklink /J "%USERPROFILE%\.claude\skills\%s" "C:\Users\mjshu\Dev\AI_OS\personal\skills\%s"
 ```
+
+Then, once, from the clone (Windows `cmd`). Check first that the old
+`agents` folder holds only `karpathy-structural-review.md`, which now lives here:
+
+```bat
+node install.js --in-place
+rmdir /s /q "%USERPROFILE%\.claude\agents"
+mklink /J "%USERPROFILE%\.claude\agents" "C:\Users\mjshu\Dev\AI_OS\personal\agents"
+```
+
+`--in-place` makes `~/.claude/CLAUDE.md` import `claude/CLAUDE.md` and
+registers the hook straight from the clone, so a pull updates both. Re-run
+it only if `install.js` itself changes.
 
 A new skill folder needs its own link. A `git pull` in the clone updates
 every local session. The daily `ai-os-metrics-extract` task runs `git pull --ff-only` in the clone, so
