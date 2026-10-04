@@ -41,6 +41,19 @@ then commit and push like anything else.
 No PR or CI monitoring, no scheduled check-ins, no follow-up reminders on
 anything you commit. Don't mention branches or pull requests to Matt.
 
+## Email drafts
+
+Write email drafts inline in the chat for Matt to copy into Gmail himself.
+Never create a Gmail draft and never send email.
+
+## Structural changes
+
+Before any structural change (a new repo, submodule, or top-level folder,
+a restructuring, a new automation or scheduled routine, or removing or
+renaming any of these), dispatch the `karpathy-structural-review` agent
+with the change described concretely, and follow its verdict. Update the
+repo's map (README or architecture doc) in the same change.
+
 ## Token cost
 
 Matt optimizes for low token use. For any multi-step task:

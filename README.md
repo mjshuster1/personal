@@ -19,7 +19,7 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 |---|---|
 | `claude/CLAUDE.md` | user-level rules for every session: Eastern-time timestamps and background-agent updates, commit straight to the default branch, cheapest capable model per subtask, how web access works in cloud sessions |
 | `hooks/et-time.js` | on each message, gives Claude the current Eastern time |
-| `agents/karpathy-structural-review.md` | the structural reviewer master-orchestrator's `AGENTS.md` requires before any structural change |
+| `agents/karpathy-structural-review.md` | the structural reviewer `claude/CLAUDE.md` says to run before any structural change; carries its own copy of the pattern it checks against |
 
 Company voice stays with the company: Cuepri's `voice.md` and
 `voice-samples/` live in `gtm-vault/vault/Cuepri/`, and layer on top of
@@ -91,7 +91,7 @@ registers the hook straight from the clone, so a pull updates both. Re-run
 it only if `install.js` itself changes.
 
 A new skill folder needs its own link. A `git pull` in the clone updates
-every local session. The daily `ai-os-metrics-extract` task runs `git pull --ff-only` in the clone, so
+every local session. The local daily sync task runs `git pull --ff-only` in the clone, so
 you rarely need to pull by hand.
 
 **Cowork and claude.ai chat** only read skills uploaded to the claude.ai
