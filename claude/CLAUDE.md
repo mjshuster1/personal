@@ -9,8 +9,10 @@ like `11:52 AM ET`.
 
 - Use the `Current time:` line the `et-time.js` hook adds to each message.
 - If there isn't one (for example, a turn started by a background agent
-  finishing), run `TZ=America/New_York date '+%-I:%M %p ET'`. Never guess
-  the time.
+  finishing), run
+  `node -e "console.log(new Date().toLocaleTimeString('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'})+' ET')"`.
+  Not `TZ=... date`: Git Bash on Windows ignores the zone and prints UTC.
+  Never guess the time.
 - That time is when the message arrived, not when the reply ends.
 
 ## Background agents
