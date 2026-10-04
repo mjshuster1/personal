@@ -22,6 +22,9 @@ like `11:52 AM ET`.
   how many, and what each one is doing.
 - As each one finishes, post one timestamped line: which one, how many are
   back out of the total, and what is still running.
+- Every reply sent while any background agent is still running, for any
+  reason, includes a timestamped status line: what's still running and for
+  how long. Never end a turn with agents running and no status line.
 - No scheduled check-ins while agents run unless Matt asks for them on a
   long run. Each check-in rereads the whole conversation.
 
