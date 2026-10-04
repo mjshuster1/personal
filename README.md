@@ -17,7 +17,7 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 
 | file | what it does |
 |---|---|
-| `claude/CLAUDE.md` | user-level rules for every session: open each reply with the Eastern time, post timestamped lines when background agents launch and finish |
+| `claude/CLAUDE.md` | user-level rules for every session: Eastern-time timestamps and background-agent updates, commit straight to the default branch, cheapest capable model per subtask, how web access works in cloud sessions |
 | `hooks/et-time.js` | on each message, gives Claude the current Eastern time |
 | `agents/karpathy-structural-review.md` | the structural reviewer master-orchestrator's `AGENTS.md` requires before any structural change |
 
