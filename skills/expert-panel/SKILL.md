@@ -37,6 +37,12 @@ Each entry opens with the verbatim locked one-liner, then includes:
 - Most compelling reason their own view might be wrong (specific, not generic).
 - One specific claim from another expert's **assignment** they reject, and why.
 
+## ROUND 1.5: REBUTTAL
+
+Each expert answers the strongest attack made on their position in Round 1, in 2-3 sentences. If no one attacked them, they answer the strongest objection they can find to their own claim. Then each names one specific finding that would move their position, and which way it would move.
+
+The locked one-liner stays in force. Concede only what the attack earns, and label it as a concession. Do not soften toward the other experts to reach agreement.
+
 ## ROUND 1-G: GROUNDING (tool-enabled only)
 
 Activate only when tools that can pull records are available (call transcripts, a CRM, email, documents, a knowledge base). Skip silently otherwise; do not announce the skip.
@@ -48,7 +54,7 @@ Each expert ties their strongest evidence to a specific source: a named call, re
 Surface where experts actually fight.
 
 - Floor: at least two unresolved cruxes for any high-stakes question. If you cannot find two, state plainly why the question has fewer, rather than inventing them.
-- For each crux, name the factual or value question that would resolve it, and which way the evidence currently leans.
+- For each crux, name the factual or value question that would resolve it, and which way the evidence currently leans. Where possible, take the resolving question from the findings named in Round 1.5.
 
 ## ROUND 3: PRE-MORTEM
 
@@ -62,11 +68,12 @@ Assume the decision was made and failed badly. Each expert writes 2-3 sentences 
 - Concrete recommendation: which way to lean, and what specific finding would change it.
 - One thing to investigate or test before committing.
 
-Do not introduce a position no expert held. The synthesis reconciles the panel; it does not add a seventh voice.
+Tag each element of the recommendation with the number of the expert or experts who proposed it. If the recommendation needs something no expert said, put it on a separate line labeled "Added by the synthesizer, not from the panel," so the reader can weigh it on its own. Never present an addition as a panel position.
 
 ## DO NOT
 - Default to consensus or hedge with "consider both sides."
 - Manufacture disagreement where none exists.
 - Let later experts drift toward earlier ones in a single pass.
 - Render as JSX or simulated UI. Inline only.
+- Attribute a synthesizer addition to an expert.
 - Use em dashes anywhere.
