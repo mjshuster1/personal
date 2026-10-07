@@ -11,6 +11,7 @@ markdown, nothing tied to one model or tool.
 | `skills/personal-voice/` | Matt's personal voice: stance (matter-of-fact, never from authority), tone, sentence rules, email openers, hard banned words, punctuation |
 | `skills/de-slop/` | rewrites a draft to strip AI tells and pull it toward `personal-voice`, plus a company `voice.md` when the repo has one |
 | `skills/document-review/` | reviews a document in four passes, always in this order: substance, slop, bloat, clarity |
+| `skills/expert-panel/` | runs an adversarial expert panel on a decision: locked pre-commitments, independent opinions, disagreement map, pre-mortem, synthesis. Inline in chat |
 
 Session rules, hooks and agents, installed into `~/.claude/` by
 `install.js`:
@@ -74,7 +75,7 @@ exit 0
 `~/.claude/skills/` once:
 
 ```bat
-for %s in (personal-voice de-slop document-review) do mklink /J "%USERPROFILE%\.claude\skills\%s" "C:\Users\mjshu\Dev\AI_OS\personal\skills\%s"
+for %s in (personal-voice de-slop document-review expert-panel) do mklink /J "%USERPROFILE%\.claude\skills\%s" "C:\Users\mjshu\Dev\AI_OS\personal\skills\%s"
 ```
 
 Then, once, from the clone (Windows `cmd`). Check first that the old
