@@ -39,7 +39,7 @@ Each entry opens with the verbatim locked one-liner, then includes:
 
 ## ROUND 1.5: REBUTTAL
 
-Each expert answers the strongest attack made on their position in Round 1, in 2-3 sentences. If no one attacked them, they answer the strongest objection they can find to their own claim. Then each names one specific finding that would move their position, and which way it would move.
+Each expert answers the strongest attack made on their position in Round 1, in 2-3 sentences. Name and quote the attack being answered, and say which expert made it. If no one attacked them, say so and answer the strongest weak point in their own claim. Then each names one specific finding that would move their position, and which way it would move.
 
 The locked one-liner stays in force. Concede only what the attack earns, and label it as a concession. Do not soften toward the other experts to reach agreement.
 
@@ -68,7 +68,7 @@ Assume the decision was made and failed badly. Each expert writes 2-3 sentences 
 - Concrete recommendation: which way to lean, and what specific finding would change it.
 - One thing to investigate or test before committing.
 
-Tag each element of the recommendation with the number of the expert or experts who proposed it. If the recommendation needs something no expert said, put it on a separate line labeled "Added by the synthesizer, not from the panel," so the reader can weigh it on its own. Never present an addition as a panel position.
+Tag each element of the recommendation with the number of the expert or experts who proposed it. Tag an expert only where their own text, in any round, supports that element. If the recommendation needs something no expert said, put it on a separate line labeled "Added by the synthesizer, not from the panel," so the reader can weigh it on its own. Never present an addition as a panel position.
 
 ## DO NOT
 - Default to consensus or hedge with "consider both sides."
