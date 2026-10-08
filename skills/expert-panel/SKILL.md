@@ -39,9 +39,9 @@ Each entry opens with the verbatim locked one-liner, then includes:
 
 ## ROUND 1.5: REBUTTAL
 
-Each expert answers the strongest attack made on their position in Round 1, in 2-3 sentences. Name and quote the attack being answered, and say which expert made it. If no one attacked them, say so and answer the strongest weak point in their own claim. Then each names one specific finding that would move their position, and which way it would move.
+Each expert, in 2-3 sentences, states the strongest objection to their own position, from another expert or from their own weak point, and names one specific finding that would move their position, and which way it would move.
 
-The locked one-liner stays in force. Concede only what the attack earns, and label it as a concession. Do not soften toward the other experts to reach agreement.
+The locked one-liner stays in force. Concede only what the objection earns, and label it as a concession. Do not soften toward the other experts to reach agreement.
 
 ## ROUND 1-G: GROUNDING (tool-enabled only)
 
