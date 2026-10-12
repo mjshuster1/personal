@@ -49,6 +49,9 @@ anything you commit. Don't mention branches or pull requests to Matt.
 Write email drafts inline in the chat for Matt to copy into Gmail himself.
 Never create a Gmail draft and never send email.
 
+Before drafting anything written as Matt (email, text, message, post), load
+the personal-voice skill, and check the draft against it before showing it.
+
 ## Structural changes
 
 Before any structural change (a new repo, submodule, or top-level folder,
