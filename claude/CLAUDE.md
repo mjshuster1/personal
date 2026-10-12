@@ -93,3 +93,13 @@ call (`curl -s -o /dev/null -w "%{http_code}" -m 10 <url>`). A 403 or `000`
 is a policy denial: report the blocked host to Matt; don't retry, route
 around it, or switch to a pricier model.
 `curl -sS "$HTTPS_PROXY/__agentproxy/status"` lists recent denials.
+
+## Pages and drafts: no widows
+
+Any HTML page or artifact: body text, list items and card details get
+`text-wrap: pretty`; headings and card titles get `text-wrap: balance`.
+Keep short labels with what they label (wrap the pair in a
+`white-space: nowrap` or `inline-flex` span), and bind separators to the
+item before them with `&nbsp;`. If a render still leaves one word alone on
+a line, join the last two words with `&nbsp;`. Check a phone-width render
+before publishing.
