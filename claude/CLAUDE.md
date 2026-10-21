@@ -15,6 +15,22 @@ like `11:52 AM ET`.
   Not `TZ=... date`: Git Bash on Windows ignores the zone and prints UTC.
   Never guess the time.
 - That time is when the message arrived, not when the reply ends.
+- The date is the hook's `Today (ET):` line. In cloud sessions the system's
+  "today" is UTC, so in the evening it shows tomorrow's date. Use the ET one.
+
+## Product facts in replies
+
+Before stating what a product or vendor can do (features, plans, prices,
+limits), find it in the repo's sources or current docs and name the file or
+page. If you can't, say "unverified" in the same sentence. This applies to
+chat replies, not just files.
+
+## Reversals and long sessions
+
+- After Matt overrides a design, restate the current design in one line
+  before building on it.
+- When a session crosses midnight ET, or Matt has reversed a design twice,
+  say so and offer a handoff.
 
 ## Background agents
 
