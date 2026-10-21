@@ -12,6 +12,8 @@ markdown, nothing tied to one model or tool.
 | `skills/de-slop/` | rewrites a draft to strip AI tells and pull it toward `personal-voice`, plus a company `voice.md` when the repo has one |
 | `skills/document-review/` | reviews a document in four passes, always in this order: substance, slop, bloat, clarity |
 | `skills/expert-panel/` | runs an adversarial expert panel on a decision: locked pre-commitments, independent opinions, disagreement map, pre-mortem, synthesis. Inline in chat |
+| `skills/ai-research-digest/` | routine only, not for normal sessions: the weekly method, scoring rules and source list for AI research. Writes `research/YYYY-MM-DD.md` |
+| `research/` | the weekly reports, 12 weeks kept; read by the next run to avoid repeats. Not copied into sessions |
 
 Session rules, hooks and agents, installed into `~/.claude/` by
 `install.js`:
@@ -25,7 +27,8 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 Company voice stays with the company: Cuepri's `voice.md` and
 `voice-samples/` live in `gtm-vault/vault/Cuepri/`, and layer on top of
 `personal-voice`. Nothing in this repo may name a company, product,
-customer, or industry.
+customer, or industry. (The research source list names public
+creators and publications only, never anyone Matt works for.)
 
 ## This repo is the only place to edit
 
