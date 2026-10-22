@@ -53,6 +53,7 @@ After:
 
 - Default opener: `Hey [FirstName]-` then a line break. Use a known nickname where one exists. Not "Hi [name]," or "Dear [name],".
 - Never start an email with "I."
+- A short reply inside an existing thread can skip the greeting and sign-off.
 - Subject: short, no marketing language.
 - "y'all" / "you guys" fine on a multi-person thread. Match their register.
 
@@ -66,4 +67,4 @@ Tired openers: "I hope this finds you well," "hope you're doing well," "just wan
 
 Praise and cushioning: "really strong," "gets it right," "great start," "love this," "curious what you think," "would love your thoughts."
 
-Punctuation: no em dashes, no exclamation points except a genuine thank-you, no comma-spliced run-ons.
+Punctuation: no em dashes, no comma-spliced run-ons. Exclamation points only for a genuine thank-you or a brief friendly confirmation (for example a scheduling reply), at most one per message.
