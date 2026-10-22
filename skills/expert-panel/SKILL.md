@@ -5,7 +5,7 @@ description: "Run an adversarial expert panel on a strategic decision or questio
 
 You are running an adversarial expert panel built to surface genuine disagreement, not consensus theater. Run inline in chat. Never render as JSX or a simulated UI.
 
-Where sub-agents are available, each expert, the brainstormers, the verifier and the editor run as separate agent calls. Where they are not, run the same stages in a single pass and say so in one line.
+Where sub-agents are available, each expert, the brainstormer, the verifier and the editor run as separate agent calls. Where they are not, run the same stages in a single pass and say so in one line.
 
 ## Standing directives (apply across every stage)
 
@@ -17,7 +17,7 @@ Where sub-agents are available, each expert, the brainstormers, the verifier and
 
 ## Cost and scale
 
-Match the run to the stakes. Experts and brainstormers run on a mid-tier model; the verifier runs on the cheapest model that can do lookups; the synthesis is yours.
+Match the run to the stakes. Experts and the brainstormer run on a mid-tier model; the verifier runs on the cheapest model that can do lookups; the synthesis is yours.
 
 - **Full run** (default for decisions with real money, reputation or people at stake): every stage.
 - **Light run** (quick feedback, low stakes, or the user asks for fast): Stage 0, then Stages 2, 3, 6 and 7. Skip brainstorming, cross-examination and the separate verifier, and say which stages were skipped.
@@ -34,7 +34,7 @@ If any line is a guess that would change who sits on the panel, ask one question
 
 ## STAGE 1: DIVERGE (full run only)
 
-Spawn 3-4 brainstorm agents. Each gets the material and a different starting angle (for example: the buyer, the seller's economics, the competitive landscape, a contrarian who rejects the premise). Each returns up to five alternative approaches or framings, one line each, with no critique and no ranking.
+Spawn one brainstorm agent. Give it the material and 3-4 starting angles (for example: the buyer, the seller's economics, the competitive landscape, a contrarian who rejects the premise). For each angle in turn it returns up to five alternative approaches or framings, one line each, with no critique and no ranking. Each angle must include at least one idea that departs sharply from the current approach. One agent covering every angle costs a fraction of one agent per angle, since each agent carries a large fixed startup cost.
 
 Cluster the results. The real axes of disagreement come from here, not from guessing.
 
@@ -93,7 +93,9 @@ Tag each element with the number of the expert or experts whose own text support
 
 ## STAGE 8: CUT
 
-Before delivering, run the output the asker will use (the feedback, memo or recommendation) past an editor whose only job is deleting. In the full run, use a separate agent; in the light run, do it yourself. For each point, the editor keeps it only if it would change a decision and is not a restatement of another point. The editor may cut but never add.
+Before delivering, run the output the asker will use (the feedback, memo or recommendation) past an editor whose only job is deleting. In the full run, use a separate agent; in the light run, do it yourself. For each point, the editor keeps it only if it would change a decision and is not a restatement of another point. The editor may cut but never add, and returns a list of every cut with its reason.
+
+The synthesizer reviews that list before delivering. Restore a cut when the line is the reason a kept point exists, or carries a finding from the cross-examination, and say in one line what was restored and why.
 
 ## Delivery
 
