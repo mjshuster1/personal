@@ -24,11 +24,12 @@ Match the run to the stakes. Experts and the brainstormer run on a mid-tier mode
 
 ## STAGE 0: FRAME
 
-Before choosing anyone, write three lines and show them:
+Before choosing anyone, write four lines and show them:
 
 - **The decision:** what is actually being decided, in one sentence.
 - **What the asker wants:** the output they will use (feedback for a third party, a go/no-go, a plan), and who reads it.
 - **Out of scope:** lenses the asker does not care about.
+- **What the recipient already knows:** their own field and competitors, and what they have already been told. When email or message access exists, read the prior thread first.
 
 If any line is a guess that would change who sits on the panel, ask one question before going further. Do not ask when a sensible default exists.
 
@@ -93,7 +94,7 @@ Tag each element with the number of the expert or experts whose own text support
 
 ## STAGE 8: CUT
 
-Before delivering, run the output the asker will use (the feedback, memo or recommendation) past an editor whose only job is deleting. In the full run, use a separate agent; in the light run, do it yourself. For each point, the editor keeps it only if it would change a decision and is not a restatement of another point. The editor may cut but never add, and returns a list of every cut with its reason.
+Before delivering, run the output the asker will use (the feedback, memo or recommendation) past an editor whose only job is deleting. In the full run, use a separate agent; in the light run, do it yourself. For each point, the editor keeps it only if it would change a decision, is not a restatement of another point, and is not something the recipient already knows or was already told (per Stage 0), unless it adds a new implication. Give the editor the Stage 0 recipient line. The editor may cut but never add, and returns a list of every cut with its reason.
 
 The synthesizer reviews that list before delivering. Restore a cut when the line is the reason a kept point exists, or carries a finding from the cross-examination, and say in one line what was restored and why.
 
