@@ -53,7 +53,7 @@ After:
 
 - Default opener: `Hey [FirstName]-` then a line break. Use a known nickname where one exists. Not "Hi [name]," or "Dear [name],".
 - Never start an email with "I."
-- Subject: short, lowercase, no marketing language.
+- Subject: short, no marketing language.
 - "y'all" / "you guys" fine on a multi-person thread. Match their register.
 
 ## Banned words and phrases
