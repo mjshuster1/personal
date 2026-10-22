@@ -21,7 +21,7 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 | file | what it does |
 |---|---|
 | `claude/CLAUDE.md` | user-level rules for every session: Eastern-time timestamps and background-agent updates, commit straight to the default branch, cheapest capable model per subtask, how web access works in cloud sessions |
-| `hooks/et-time.js` | on each message, gives Claude the current Eastern time |
+| `hooks/et-time.js` | on each message, gives Claude the current Eastern time and date; when the session context is 250k+ tokens and the cache is warm, adds one line telling Claude to offer a handoff. Reads the session transcript, whose format is internal to Claude Code, so that line is best-effort and fails silent (re-check steps are in the file header) |
 | `agents/karpathy-structural-review.md` | the structural reviewer `claude/CLAUDE.md` says to run before any structural change; carries its own copy of the pattern it checks against |
 
 Company voice stays with the company: Cuepri's `voice.md` and

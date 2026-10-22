@@ -29,8 +29,10 @@ chat replies, not just files.
 
 - After Matt overrides a design, restate the current design in one line
   before building on it.
-- When a session crosses midnight ET, or Matt has reversed a design twice,
-  say so and offer a handoff.
+- When a session crosses midnight ET, Matt has reversed a design twice, or the
+  time hook reports a large context (about 250k tokens or more), say so and
+  offer a handoff (or /compact for the hook's trigger) once. Don't repeat the
+  offer; the hook repeats its line only after substantial growth.
 
 ## Background agents
 
