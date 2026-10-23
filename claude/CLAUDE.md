@@ -111,9 +111,22 @@ affected. Tested 2026-09-27:
 
 Before spawning an agent that needs the web, check reachability with one
 call (`curl -s -o /dev/null -w "%{http_code}" -m 10 <url>`). A 403 or `000`
-is a policy denial: report the blocked host to Matt; don't retry, route
-around it, or switch to a pricier model.
+from the proxy is a policy denial: report the blocked host to Matt; don't
+retry, route around it, or switch to a pricier model. A 403 from the site
+itself (the proxy shows `200 Connection Established`, then the site's own
+server refuses) is not a policy denial: try WebFetch, then `r.jina.ai`,
+before reporting it.
 `curl -sS "$HTTPS_PROXY/__agentproxy/status"` lists recent denials.
+
+## Dead ends
+
+When a source comes back empty, blocked, or refused, try the other routes
+to the same answer before reporting back: another connector, a documented
+fallback, a different query, a doc linked from the record. Report a dead
+end only after that, and say what was tried. A dead end on a side input
+(enrichment, context, a check) gets the same effort as one on the main ask.
+This doesn't override a hard stop: a proxy policy denial, a write that
+needs Matt's yes, or a missing permission or sign-in.
 
 ## Pages and drafts: no widows
 
