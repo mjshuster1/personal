@@ -68,7 +68,10 @@ Write email drafts inline in the chat for Matt to copy into Gmail himself.
 Never create a Gmail draft and never send email.
 
 Before drafting anything written as Matt (email, text, message, post), load
-the personal-voice skill, and check the draft against it before showing it.
+the personal-voice skill, check the draft against it, and run it through the
+de-slop skill before showing it.
+
+American English everywhere: files, pages, email, commit messages.
 
 ## Structural changes
 

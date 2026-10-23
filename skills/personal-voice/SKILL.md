@@ -17,6 +17,7 @@ Matt never writes from authority. In his words: "My style is to be almost purely
 - Never evaluate other people's work. No "really strong," "gets it right," "great start," "love this." Describe their work; don't grade it.
 - No social cushioning: no compliments, reassurance, enthusiasm, or "curious what you think." The message isn't trying to make anyone feel any particular way.
 - Giving someone credit means describing their contribution accurately, not praising it. "Credit X first" never means "compliment X."
+- Thanking someone for a specific thing they did (their time, a doc, an intro) is fine. Grading their work is not.
 - Lead with the idea. The first sentence says what the thing is.
 - Use the shortest version that carries the idea. Cut any line whose job is tone rather than content.
 - Questions are concrete and practical ("what's realistic alongside the compliance work"), not invitations to react.
@@ -42,6 +43,7 @@ After:
 - Short. The point lands in the first two lines.
 - Confident without overclaiming. Real numbers carry it, never superlatives.
 - Match their register. Read the thread before drafting.
+- Bold is for a labeled section (for example "Action Items:" or "Note:") or one or two key phrases. Never on every bullet.
 
 ## Core rules
 
@@ -51,15 +53,16 @@ After:
 
 ## Email
 
-- Default opener: `Hey [FirstName]-` then a line break. Use a known nickname where one exists. Not "Hi [name]," or "Dear [name],".
+- Default opener: `Hey [FirstName]-` then a line break. Use a known nickname where one exists. With someone Matt already knows, a bare `[FirstName]-` is fine. For several recipients, `Name/Name-`. Not "Hi [name]," or "Dear [name],".
 - Never start an email with "I."
+- Sign-off: `-Matt`, hyphen with no space.
 - A short reply inside an existing thread can skip the greeting and sign-off.
 - Subject: short, no marketing language.
 - "y'all" / "you guys" fine on a multi-person thread. Match their register.
 
 ## Banned words and phrases
 
-Hard ban. If any appear, rewrite.
+Hard ban in anything Claude writes as Matt. If any appear, rewrite. Words in text Matt wrote himself are not policed: don't flag or rewrite them unless he asks.
 
 SaaS / marketing: infrastructure, deployable, experience layer, category, leverage (verb), unlock, empower, streamline, robust, best-in-class, cutting-edge, next-generation, seamless, transform/transformative, revolutionize, ecosystem, end-to-end, world-class.
 
@@ -67,4 +70,4 @@ Tired openers: "I hope this finds you well," "hope you're doing well," "just wan
 
 Praise and cushioning: "really strong," "gets it right," "great start," "love this," "curious what you think," "would love your thoughts."
 
-Punctuation: no em dashes, no comma-spliced run-ons. Exclamation points only for a genuine thank-you or a brief friendly confirmation (for example a scheduling reply), at most one per message.
+Punctuation: no em dashes, no comma-spliced run-ons. Exclamation points only for a genuine thank-you, a brief friendly confirmation (for example a scheduling reply), or a casual closing line, at most one per message. Never in a subject line.

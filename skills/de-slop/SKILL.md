@@ -43,7 +43,7 @@ If the text is internal, a note to self, or clearly not company material, do pas
 - **Cutoff hedges.** "As of my last update," "based on available information." Find the fact or cut the sentence.
 - **Negative parallelism.** "It's not just X, it's Y." "Not only X but also Y." Say the one thing that is true.
 - **Filler.** "In order to" to "to." "Due to the fact that" to "because." "Has the ability to" to "can." "It is important to note that" to nothing.
-- **Formatting tics.** Bolded inline headers ("**Thing:** sentence"), Title Case headings, emojis on headings or bullets, curly quotes. Strip all of it.
+- **Formatting tics.** Bold on every bullet or a bolded lead-in on each item ("**Thing:** sentence"; a labeled section or one or two bolded key phrases stays, per `personal-voice`), Title Case headings, emojis on headings or bullets, curly quotes. Strip all of it.
 - **Generic uplift closers.** "The future looks bright," "exciting times ahead," "a step in the right direction." Cut, or replace with the actual next step.
 
 ### Nuanced
@@ -72,8 +72,8 @@ From the voice files you read at the start. The rules that do the most work in a
 - **Anchor everything.** A referrer, a number, a specific thing they said. Nothing floats. This is usually what AI drafts are missing.
 - **Short.** The point lands in the first two lines.
 - **Honest over polished.** Name the caveat, admit what's rough. Questions are concrete and practical, not invitations to react.
-- **Banned list is a hard ban.** Enforce the banned words, tired openers, and punctuation rules exactly as written.
-- **Email openers.** `Hey [FirstName]-` then a line break. Never open with "I."
+- **The banned list applies to Claude's writing.** Keep the banned words, tired openers, and punctuation out of the rewrite. Words Matt wrote himself are his: if the text is his own, don't flag or rewrite a word only because it is on the list.
+- **Email openers and sign-off.** Per `personal-voice`. Never open with "I."
 
 Then apply the company `voice.md`, if there is one: its framing, vocabulary, glossary, and soft bans.
 
@@ -86,7 +86,7 @@ Precedence, highest first:
 3. **`personal-voice`**: how the rules say he writes, at any company.
 4. **Pass 1 tell-stripping**: the generic patterns.
 
-The samples outrank the docs. The voice files are a description of the voice; the samples are the voice. Where a sample does something a voice file bans, follow the sample.
+The samples outrank the docs on wording. The voice files are a description of the voice; the samples are the voice. Where a sample's cadence, opener, or register differs from a voice file, follow the sample. A banned word in a sample is Matt's own usage: don't treat it as an error in his text, and don't copy it into new copy.
 
 That inversion only runs one way, so be careful with it. A sample is evidence about **phrasing, cadence, openers, and register**, which is what it can outrank the docs on. It is not evidence that a claim is safe to make, that a number is current, or that an ask is appropriate here. Never cite a sample to justify anything but wording.
 
