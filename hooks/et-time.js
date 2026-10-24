@@ -79,7 +79,7 @@ function contextNote(input, nowMs) {
   let line = '';
   if (t.ctx < WARN_AT) st.level = 0; // reset after a compaction or handoff
   if (!cold && t.ctx >= WARN_AT && !(st.level && t.ctx < st.level + WARN_STEP)) {
-    line = `Context is about ${k(t.ctx)} tokens and the cache is warm. If the work is not nearly done, offer a handoff or /compact once, now while it is cheap.`;
+    line = `Context is about ${k(t.ctx)} tokens and the cache is warm. If the work is not nearly done, offer a handoff once, now while it is cheap.`;
     st.level = t.ctx;
   }
   try { fs.writeFileSync(sp, JSON.stringify(st)); } catch (e) {}

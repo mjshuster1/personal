@@ -31,7 +31,7 @@ chat replies, not just files.
   before building on it.
 - When a session crosses midnight ET, Matt has reversed a design twice, or the
   time hook reports a large context (about 250k tokens or more), say so and
-  offer a handoff (or /compact for the hook's trigger) once. Don't repeat the
+  offer a handoff once. Don't repeat the
   offer; the hook repeats its line only after substantial growth.
 - A handoff means a handoff file (goal, done, left, decisions, what failed)
   that Matt can review, then a fresh chat pointed at it. Don't use /compact
