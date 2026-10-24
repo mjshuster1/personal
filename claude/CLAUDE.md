@@ -39,6 +39,12 @@ chat replies, not just files.
 - Pick the model before the job and keep it. Switching models mid-chat
   re-reads the whole chat at full price.
 
+## Practices page
+
+Whenever you change `research/PRACTICES.md` in any session (a status flip, a
+new entry), run `node research/practices-page.js` and publish its output to the
+existing page linked in `research/README.md` before you finish.
+
 ## Background agents
 
 - When you launch agents in the background, post one timestamped line:
