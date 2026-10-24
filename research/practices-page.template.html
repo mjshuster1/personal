@@ -1,0 +1,164 @@
+<title>Practices Log</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a plain ruled list grouped by status, pending first, with filter buttons on top. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --fg: #181b20;
+  --muted: #5b6370;
+  --rule: #dde1e7;
+  --pending: #9a5b00;
+  --pending-bg: #fdf0d9;
+  --force: #17663f;
+  --force-bg: #def3e6;
+  --rejected: #a3322c;
+  --rejected-bg: #fae3e1;
+  --noted: #3a5a99;
+  --noted-bg: #e3eaf8;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171c; --surface: #1b1f26; --fg: #e8eaee; --muted: #9aa3b0; --rule: #2e343e;
+    --pending: #f0b963; --pending-bg: #3a2c12;
+    --force: #7fd4a1; --force-bg: #163325;
+    --rejected: #f0928b; --rejected-bg: #3a1c1a;
+    --noted: #9fb8ee; --noted-bg: #1d2a47;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171c; --surface: #1b1f26; --fg: #e8eaee; --muted: #9aa3b0; --rule: #2e343e;
+  --pending: #f0b963; --pending-bg: #3a2c12;
+  --force: #7fd4a1; --force-bg: #163325;
+  --rejected: #f0928b; --rejected-bg: #3a1c1a;
+  --noted: #9fb8ee; --noted-bg: #1d2a47;
+  color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+  padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 720px; margin: 0 auto; }
+h1 { font-size: 26px; font-weight: 600; margin: 0 0 6px; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0 0 22px; text-wrap: pretty; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 26px; }
+.filters button {
+  font: inherit; font-size: 14px; color: var(--fg); background: var(--surface);
+  border: 1px solid var(--rule); border-radius: 999px; padding: 6px 14px; cursor: pointer;
+  white-space: nowrap;
+}
+.filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.filters button:focus-visible { outline: 2px solid var(--noted); outline-offset: 2px; }
+.filters .n { font-family: var(--font-mono); font-size: 12px; margin-left: 6px; opacity: .75; }
+section { margin: 0 0 30px; }
+section h2 {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
+  margin: 0 0 4px; padding-bottom: 8px; border-bottom: 1px solid var(--rule);
+}
+.pill {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase;
+  border-radius: 4px; padding: 2px 7px; white-space: nowrap;
+}
+.pending .pill { color: var(--pending); background: var(--pending-bg); }
+.force .pill { color: var(--force); background: var(--force-bg); }
+.rejected .pill { color: var(--rejected); background: var(--rejected-bg); }
+.noted .pill { color: var(--noted); background: var(--noted-bg); }
+.meaning { font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--muted); font-size: 13px; }
+article { padding: 14px 0; border-bottom: 1px solid var(--rule); min-width: 0; }
+article h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; text-wrap: balance; }
+article p { margin: 0 0 8px; text-wrap: pretty; }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; color: var(--muted); margin: 0; }
+.meta b { font-weight: 500; color: var(--fg); }
+.meta code { font-family: var(--font-mono); font-size: 12px; overflow-wrap: anywhere; }
+.empty { color: var(--muted); }
+footer { color: var(--muted); font-size: 13px; text-wrap: pretty; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<main>
+  <h1>Practices Log</h1>
+  <p class="sub">What the weekly AI research digest has raised, and what you did about it. A snapshot of <code>research/PRACTICES.md</code> as of /*ASOF*/.</p>
+  <div class="filters" id="filters" role="group" aria-label="Filter by status"></div>
+  <div id="list"></div>
+  <footer>The source of truth is <code>research/PRACTICES.md</code> in the personal repo. It is rebuilt each time the log changes.</footer>
+</main>
+
+<script>
+var GROUPS = [
+  { key: 'pending', label: 'Pending', meaning: 'waiting on you' },
+  { key: 'force', label: 'In force', meaning: 'applied to your setup' },
+  { key: 'noted', label: 'Noted', meaning: 'worth remembering, no change' },
+  { key: 'rejected', label: 'Rejected', meaning: 'decided against, with the reason' }
+];
+var ITEMS = /*ITEMS*/[];
+
+var active = 'all';
+try { var saved = localStorage.getItem('practices-filter'); if (saved) active = saved; } catch (e) {}
+
+function el(tag, cls, text) {
+  var n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+function count(key) { return ITEMS.filter(function (i) { return key === 'all' || i.s === key; }).length; }
+
+function renderFilters() {
+  var box = document.getElementById('filters');
+  box.textContent = '';
+  [{ key: 'all', label: 'All' }].concat(GROUPS).forEach(function (g) {
+    var b = el('button', null, g.label);
+    b.type = 'button';
+    b.setAttribute('aria-pressed', String(active === g.key));
+    b.appendChild(el('span', 'n', String(count(g.key))));
+    b.addEventListener('click', function () {
+      active = g.key;
+      try { localStorage.setItem('practices-filter', active); } catch (e) {}
+      render();
+    });
+    box.appendChild(b);
+  });
+}
+
+function renderList() {
+  var list = document.getElementById('list');
+  list.textContent = '';
+  GROUPS.forEach(function (g) {
+    if (active !== 'all' && active !== g.key) return;
+    var items = ITEMS.filter(function (i) { return i.s === g.key; });
+    var sec = el('section', g.key);
+    var h = el('h2');
+    h.appendChild(el('span', 'pill', g.label));
+    h.appendChild(el('span', 'meaning', g.meaning));
+    sec.appendChild(h);
+    if (!items.length) sec.appendChild(el('p', 'empty', 'Nothing here.'));
+    items.forEach(function (i) {
+      var a = el('article');
+      a.appendChild(el('h3', null, i.t));
+      a.appendChild(el('p', null, i.d));
+      var m = el('p', 'meta');
+      [['Where', i.w, true], ['Source', i.src], ['Raised', i.date]].forEach(function (r) {
+        var s = el('span');
+        s.appendChild(el('b', null, r[0] + ' '));
+        s.appendChild(r[2] ? el('code', null, r[1]) : document.createTextNode(r[1]));
+        m.appendChild(s);
+      });
+      a.appendChild(m);
+      sec.appendChild(a);
+    });
+    list.appendChild(sec);
+  });
+}
+function render() { renderFilters(); renderList(); }
+if (!GROUPS.concat([{ key: 'all' }]).some(function (g) { return g.key === active; })) active = 'all';
+render();
+</script>
