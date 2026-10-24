@@ -74,6 +74,19 @@ section h2 {
 .noted .pill { color: var(--noted); background: var(--noted-bg); }
 .meaning { font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--muted); font-size: 13px; }
 article { padding: 14px 0; border-bottom: 1px solid var(--rule); min-width: 0; }
+details.entry > summary { list-style: none; cursor: pointer; display: block; position: relative; padding-right: 28px; }
+details.entry > summary::-webkit-details-marker { display: none; }
+details.entry > summary::after {
+  content: ""; position: absolute; right: 4px; top: 7px; width: 8px; height: 8px;
+  border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg); transition: transform .15s;
+}
+details.entry[open] > summary::after { transform: rotate(-135deg); top: 11px; }
+details.entry > summary:focus-visible { outline: 2px solid var(--noted); outline-offset: 4px; }
+.more { margin: 12px 0 0; padding: 12px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; min-width: 0; }
+.more p { margin: 0 0 8px; }
+.more a { color: var(--noted); font-size: 14px; overflow-wrap: anywhere; }
+.hint { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
 article h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; text-wrap: balance; }
 article p { margin: 0 0 8px; text-wrap: pretty; }
 .meta { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; color: var(--muted); margin: 0; }
@@ -87,6 +100,7 @@ footer { color: var(--muted); font-size: 13px; text-wrap: pretty; }
 <main>
   <h1>Practices Log</h1>
   <p class="sub">What the weekly AI research digest has raised, and what you did about it. A snapshot of <code>research/PRACTICES.md</code> as of /*ASOF*/.</p>
+  <p class="hint">Tap an entry to see why it matters and open the source.</p>
   <div class="filters" id="filters" role="group" aria-label="Filter by status"></div>
   <div id="list"></div>
   <footer>The source of truth is <code>research/PRACTICES.md</code> in the personal repo. It is rebuilt each time the log changes.</footer>
@@ -143,8 +157,9 @@ function renderList() {
     if (!items.length) sec.appendChild(el('p', 'empty', 'Nothing here.'));
     items.forEach(function (i) {
       var a = el('article');
-      a.appendChild(el('h3', null, i.t));
-      a.appendChild(el('p', null, i.d));
+      var top = i.more || i.link ? el('summary') : a;
+      top.appendChild(el('h3', null, i.t));
+      top.appendChild(el('p', null, i.d));
       var m = el('p', 'meta');
       [['Where', i.w, true], ['Source', i.src], ['Raised', i.date]].forEach(function (r) {
         var s = el('span');
@@ -152,7 +167,20 @@ function renderList() {
         s.appendChild(r[2] ? el('code', null, r[1]) : document.createTextNode(r[1]));
         m.appendChild(s);
       });
-      a.appendChild(m);
+      top.appendChild(m);
+      if (top !== a) {
+        var det = el('details', 'entry');
+        det.appendChild(top);
+        var box = el('div', 'more');
+        if (i.more) box.appendChild(el('p', null, i.more));
+        if (i.link) {
+          var l = el('a', null, 'Open the source \u2197');
+          l.href = i.link; l.target = '_blank'; l.rel = 'noopener';
+          box.appendChild(l);
+        }
+        det.appendChild(box);
+        a.appendChild(det);
+      }
       sec.appendChild(a);
     });
     list.appendChild(sec);
