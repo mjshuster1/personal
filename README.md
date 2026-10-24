@@ -13,7 +13,7 @@ markdown, nothing tied to one model or tool.
 | `skills/document-review/` | reviews a document in four passes, always in this order: substance, slop, bloat, clarity |
 | `skills/expert-panel/` | runs an adversarial expert panel on a decision: frame, brainstorm, independent opinions, cross-examination, fact check, disagreement map, synthesis, cut. Full or light run by stakes. Inline in chat |
 | `skills/ai-research-digest/` | routine only, not for normal sessions: the weekly method, scoring rules and source list for AI research. Writes `research/YYYY-MM-DD.md` |
-| `research/` | the weekly reports, 12 weeks kept; read by the next run to avoid repeats. Not copied into sessions |
+| `research/` | the weekly reports, 12 weeks kept, and `PRACTICES.md`, the permanent log of what is in force, rejected or pending; read by the next run to avoid repeats. Not copied into sessions |
 
 Session rules, hooks and agents, installed into `~/.claude/` by
 `install.js`:
