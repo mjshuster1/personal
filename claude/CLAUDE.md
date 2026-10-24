@@ -65,7 +65,10 @@ anything you commit. Don't mention branches or pull requests to Matt.
 ## Email drafts
 
 Write email drafts inline in the chat for Matt to copy into Gmail himself.
-Never create a Gmail draft and never send email.
+Never create a Gmail draft. Sending email to Matt himself (matt@cuepri.com)
+is fine, for example the `ai-research-digest` routine's weekly report. Never
+send email to anyone else; anything addressed to another person is an inline
+draft only.
 
 Before drafting anything written as Matt (email, text, message, post), load
 the personal-voice skill, check the draft against it, and run it through the

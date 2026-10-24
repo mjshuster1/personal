@@ -36,7 +36,10 @@ If a fetch fails (non-200, block, timeout), try `curl -sL https://r.jina.ai/<url
 8. **Retention.** Delete report files in `research/` older than 12 weeks. Git history keeps them.
 9. **Commit.** Commit `research/` changes straight to `main` and push. If the push is rejected or fails, do not branch or work around it: print the full report text in your final output and say the push failed.
 
-10. **Notify.** If the report has any Kept items or Worth knowing items, send one PushNotification (it reaches Matt's phone and email) after the commit and push, with the summary in `<routine_summary>` tags: the best item first, then one line per remaining item, then the report path. A report with nothing kept sends no notification. This is not Gmail; never create a Gmail draft or send email.
+10. **Email and notify.** If the report has any Kept items or Worth knowing items, after the commit and push do both:
+    - Email the full report to matt@cuepri.com with the Gmail `send_message` tool (load it with ToolSearch if needed). Subject: `AI research digest YYYY-MM-DD: N kept, M worth knowing`. Body: plain text, the whole report as written, ending with the report path. Send to Matt only, never anyone else, and never create a draft.
+    - Send one PushNotification with a short summary in `<routine_summary>` tags: the best item first (one sentence), then one line per remaining item, then the report path.
+    If the email send fails, say so in the notification and print the full report in the final output. A report with nothing kept sends neither.
 
 ## Final output
 
