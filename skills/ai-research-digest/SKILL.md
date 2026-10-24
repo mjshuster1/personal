@@ -18,6 +18,7 @@ Run once per week, unattended. Read-only on the web, write only inside `research
 | Nate Herk (YouTube) | `https://www.youtube.com/feeds/videos.xml?channel_id=UC2ojq-nuP8ceeHqiroeKhBA` |
 | Silicon Valley Girl (YouTube) | `https://www.youtube.com/feeds/videos.xml?channel_id=UCiq1FIgtEK7LRAOB1JXTPig` (broad AI news; expect most items to be dropped) |
 | Duncan Rogoff (YouTube) | `https://www.youtube.com/feeds/videos.xml?channel_id=UC37JpWP5PxLSma2lh79HU9A` |
+| Tristen O'Brien (YouTube) | `https://www.youtube.com/feeds/videos.xml?channel_id=UCruPFdKtGG8Oz5dvha6WWgA` |
 | IndyDevDan (YouTube) | `https://www.youtube.com/feeds/videos.xml?channel_id=UC_x36zCEGilGpB1m-V4gmjg` (agent architecture) |
 | Karpathy | `https://karpathy.github.io/feed.xml` (blog feed; last post Feb 2026, so many quiet weeks are normal). His YouTube feed (`channel_id=UCXUPKJO5MZQN11PqgIvyuvQ`) last posted Feb 2025. X is not fetchable |
 
