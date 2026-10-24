@@ -33,6 +33,11 @@ chat replies, not just files.
   time hook reports a large context (about 250k tokens or more), say so and
   offer a handoff (or /compact for the hook's trigger) once. Don't repeat the
   offer; the hook repeats its line only after substantial growth.
+- A handoff means a handoff file (goal, done, left, decisions, what failed)
+  that Matt can review, then a fresh chat pointed at it. Don't use /compact
+  as a cost cut: it adds a full read and can drop early instructions.
+- Pick the model before the job and keep it. Switching models mid-chat
+  re-reads the whole chat at full price.
 
 ## Background agents
 
@@ -93,6 +98,11 @@ Matt optimizes for low token use. For any multi-step task:
    still do that subtask accurately. Mechanical retrieval (search, grep,
    pull a doc, fetch a known URL) goes to the cheapest tier (`haiku`, low
    effort). The deliverable Matt reads is never downgraded to save tokens.
+   Effort by task: low for retrieval, tagging and quick drafts; medium
+   (the default) for most work; high for checking numbers or verifying a
+   finished piece; xhigh or max only for long, unattended, critical jobs.
+   Pass `effort` to an agent when the subtask calls for something other
+   than the default.
 3. If a cheap agent comes back blocked (missing auth, no tool access),
    don't retry on a pricier model. Report the blocker. Blocked calls still
    cost tokens, so check tool and auth access before spawning where you can.
