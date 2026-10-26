@@ -26,8 +26,8 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 
 | file | what it does |
 |---|---|
-| `inventory.md` | every skill and agent available to Matt's sessions (his own, plugin, built-in), source of truth for the web page at https://claude.ai/artifact/1L6onUFELu2jmU1F3ReLzT |
-| `inventory.html` | the page source, republished to that URL; regenerate both from the agent and skill files and the session's live lists |
+| `inventory.md` | every skill and agent available to Matt's sessions (his own, plugin, built-in); source of truth for the web page at https://claude.ai/artifact/1L6onUFELu2jmU1F3ReLzT |
+| `inventory-page.js`, `inventory-page.template.html` | `node inventory-page.js` builds the page from `inventory.md` and prints any skill or agent file on disk that `inventory.md` doesn't list. Republish the output to that URL |
 
 Company voice stays with the company: Cuepri's `voice.md` and
 `voice-samples/` live in `gtm-vault/vault/Cuepri/`, and layer on top of

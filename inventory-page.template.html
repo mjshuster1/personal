@@ -1,0 +1,65 @@
+<title>Skills and Agents Inventory</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta http-equiv="Content-Language" content="en-US">
+<style>
+/* Layout: one reading column, grouped lists, filter box on top. Mine first, then plugins and built-ins. */
+:root{
+  --bg:#f5f7f7; --panel:#ffffff; --fg:#14201f; --muted:#556563; --line:#d9e1e0; --accent:#0d6b63; --accent-soft:#dff0ee; --tag:#eef2f2;
+  --display:"Fraunces", Georgia, serif; --body:"IBM Plex Sans", system-ui, sans-serif; --mono:"IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f1716; --panel:#162221; --fg:#e4efed; --muted:#9bb0ad; --line:#2a3b39; --accent:#58c4b8; --accent-soft:#1b3330; --tag:#1d2c2a; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1716; --panel:#162221; --fg:#e4efed; --muted:#9bb0ad; --line:#2a3b39; --accent:#58c4b8; --accent-soft:#1b3330; --tag:#1d2c2a; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin-inline:auto;padding-block:32px 64px}
+h1{font-family:var(--display);font-size:2rem;line-height:1.15;margin:0 0 6px;text-wrap:balance;font-weight:600}
+.sub{color:var(--muted);margin:0 0 20px;text-wrap:pretty}
+h2{font-family:var(--display);font-size:1.3rem;margin:36px 0 4px;font-weight:600;text-wrap:balance}
+.note{color:var(--muted);font-size:13.5px;margin:0 0 12px;text-wrap:pretty}
+#q{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--fg);font:inherit}
+#q:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.counts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.counts span{background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:999px;font-size:13px;white-space:nowrap}
+.list{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.row{display:grid;grid-template-columns:minmax(0,230px) minmax(0,1fr);gap:4px 16px;padding:10px 14px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row b{font-family:var(--mono);font-size:13px;font-weight:500;overflow-wrap:anywhere}
+.row span{color:var(--muted);text-wrap:pretty}
+.tag{display:inline-block;background:var(--tag);color:var(--muted);font-size:11.5px;padding:1px 7px;border-radius:4px;margin-left:6px;white-space:nowrap}
+.empty{color:var(--muted);margin-top:24px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400&display=swap">
+
+<div class="wrap">
+  <h1>Skills and Agents Inventory</h1>
+  <p class="sub">What is available as of /*ASOF*/. Yours come first, then plugin and built-in ones. Source: inventory.md in the personal repo.</p>
+  <input id="q" type="search" placeholder="Filter by name or description" aria-label="Filter">
+  <div class="counts" id="counts"></div>
+  <div id="out"></div>
+  <p class="empty" id="none" hidden>Nothing matches that filter.</p>
+</div>
+
+<script>
+var G = /*GROUPS*/[];
+var out=document.getElementById("out"), counts=document.getElementById("counts"), q=document.getElementById("q"), none=document.getElementById("none");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+var html="", tot=0, mine=0;
+G.forEach(function(g,gi){
+  tot+=g.i.length; if(g.y) mine+=g.i.length;
+  html+='<section><h2>'+esc(g.t)+' ('+g.i.length+')</h2><p class="note">'+esc(g.n)+'</p><div class="list">'+
+    g.i.map(function(r){return '<div class="row"><b>'+esc(r[0])+'</b><span>'+esc(r[1])+(r[2]?'<em class="tag" style="font-style:normal">'+esc(r[2])+'</em>':'')+'</span></div>'}).join("")+'</div></section>';
+});
+out.innerHTML=html;
+counts.innerHTML='<span>'+tot+' total</span><span>'+mine+' yours</span><span>'+G[2].i.length+' agents in the consultant workspace</span>';
+q.addEventListener("input",function(){
+  var v=q.value.toLowerCase(), shown=0;
+  out.querySelectorAll("section").forEach(function(s){
+    var any=false;
+    s.querySelectorAll(".row").forEach(function(r){
+      var m=!v||r.textContent.toLowerCase().indexOf(v)>-1; r.hidden=!m; if(m){any=true;shown++;}
+    });
+    s.hidden=!any;
+  });
+  none.hidden=shown>0;
+});
+</script>
