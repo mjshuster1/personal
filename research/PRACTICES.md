@@ -15,6 +15,13 @@ it was raised): `- status | title | detail | where | source | more | link` (the 
 a field. `research/practices-page.js` turns this file into the practices page,
 so a line in any other shape stops the build.
 
+## 2026-10-26
+
+- pending | Run /skill-doctor and /doctor to find unused skills and stale rules | /skill-doctor lists what each skill costs and flags unused ones; /doctor flags outdated or conflicting lines in CLAUDE.md and skills. Review before removing anything. | Claude Code session, then claude/CLAUDE.md and skills | Ben AI | Ben AI says /skill-doctor saved about 20,000 tokens and /doctor found 312 problems in 404 files (his numbers, unverified). It gives a built-in way to finish the pending unused-plugin cleanup. Nothing is removed without your yes. | https://www.youtube.com/watch?v=J5EbL1UaqG8
+- pending | Try /advisor so a cheap model can ask Opus at the hard moments | For mostly mechanical work with one judgment call, run Sonnet or Haiku with /advisor on instead of Opus throughout. | claude/CLAUDE.md, Token cost | Ben AI | Ben AI uses it for inbox cleanup, with Opus helping only on important replies. Unverified whether it works inside spawned agents, so test on one routine before adding a line to the Token cost rule. | https://www.youtube.com/watch?v=J5EbL1UaqG8
+- noted | Use a side chat to ask about or review a long task | A side chat reads the main chat but stays out of its context, so questions do not add tokens to it. | Claude Code desktop app | Ben AI | Side chats persist and can message the main chat. They use the same model and context, so they do not replace a review by a separate agent. | https://www.youtube.com/watch?v=J5EbL1UaqG8
+- noted | Let one coordinator chat start a chat per task | Projects (Pro and Max) or nested sessions (Team) let a main chat start task chats, message them and check their work. | Claude Code desktop app | Ben AI | Same one-chat-per-task habit with a coordinator. Rollout is partial and the plan differences are Ben AI's description, unverified. | https://www.youtube.com/watch?v=J5EbL1UaqG8
+
 ## 2026-10-24
 
 - in force | Stop offering /compact when a chat gets long | The rule and the hook's warning now offer a handoff only, matching the handoff-file entry. | claude/CLAUDE.md, Reversals and long sessions; hooks/et-time.js | Practices audit | Found in the Oct 24 audit of your rules against this log: CLAUDE.md said not to use /compact as a cost cut while another line and the hook still offered it. Both fixed Oct 24.
