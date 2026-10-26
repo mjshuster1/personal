@@ -2,8 +2,9 @@
 // Builds the practices page from research/PRACTICES.md and the template beside it.
 //   node research/practices-page.js [out.html]     (default: system temp dir)
 // Entry format in PRACTICES.md, one per line under a "## YYYY-MM-DD" heading:
-//   - status | title | detail | where | source | more | link
-// The last two are optional: more (a few sentences shown on expand) and link (source URL).
+//   - status | title | detail | where | source | more | link | how
+// The last three are optional: more (why it matters, shown on expand), link (source URL) and
+// how (two to five steps separated by " ;; ", shown as a numbered list on expand).
 // status is one of: pending, in force, noted, rejected. Exits non-zero on a bad line.
 const fs = require('fs');
 const os = require('os');
@@ -20,11 +21,11 @@ fs.readFileSync(path.join(dir, 'PRACTICES.md'), 'utf8').split('\n').forEach((lin
   if (h) { raised = `${MONTHS[+h[2] - 1]} ${+h[3]}`; return; }
   if (!line.startsWith('- ')) return;
   const f = line.slice(2).split(' | ').map(s => s.trim());
-  if (f.length < 5 || f.length > 7 || !STATUS[f[0]] || !raised) {
-    console.error(`PRACTICES.md line ${n + 1} is not "- status | title | detail | where | source [| more | link]" under a dated heading: ${line.slice(0, 80)}`);
+  if (f.length < 5 || f.length > 8 || !STATUS[f[0]] || !raised) {
+    console.error(`PRACTICES.md line ${n + 1} is not "- status | title | detail | where | source [| more | link | how]" under a dated heading: ${line.slice(0, 80)}`);
     process.exit(1);
   }
-  items.push({ s: STATUS[f[0]], t: f[1], d: f[2], w: f[3], src: f[4], more: f[5] || '', link: f[6] || '', date: raised });
+  items.push({ s: STATUS[f[0]], t: f[1], d: f[2], w: f[3], src: f[4], more: f[5] || '', link: f[6] || '', how: f[7] ? f[7].split(' ;; ') : [], date: raised });
 });
 
 const asof = new Date().toLocaleDateString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', year: 'numeric' }).replace(' ', '&nbsp;');

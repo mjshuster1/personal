@@ -86,6 +86,14 @@ details.entry > summary:focus-visible { outline: 2px solid var(--noted); outline
 .more { margin: 12px 0 0; padding: 12px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; min-width: 0; }
 .more p { margin: 0 0 8px; }
 .more a { color: var(--noted); font-size: 14px; overflow-wrap: anywhere; }
+.more h4 { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 14px 0 6px; }
+.more h4:first-child { margin-top: 0; }
+.more ol { margin: 0 0 8px; padding-left: 20px; }
+.more li { margin: 0 0 6px; text-wrap: pretty; }
+.ask textarea { width: 100%; box-sizing: border-box; min-height: 120px; font: inherit; font-size: 13px; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; resize: vertical; }
+.ask button { font: inherit; font-size: 14px; color: var(--bg); background: var(--fg); border: 0; border-radius: 6px; padding: 7px 14px; cursor: pointer; margin-top: 8px; }
+.ask button:focus-visible { outline: 2px solid var(--noted); outline-offset: 2px; }
+.ask .copied { color: var(--muted); font-size: 13px; margin-left: 10px; }
 .hint { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
 article h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; text-wrap: balance; }
 article p { margin: 0 0 8px; text-wrap: pretty; }
@@ -157,7 +165,7 @@ function renderList() {
     if (!items.length) sec.appendChild(el('p', 'empty', 'Nothing here.'));
     items.forEach(function (i) {
       var a = el('article');
-      var top = i.more || i.link ? el('summary') : a;
+      var top = el('summary');
       top.appendChild(el('h3', null, i.t));
       top.appendChild(el('p', null, i.d));
       var m = el('p', 'meta');
@@ -172,12 +180,38 @@ function renderList() {
         var det = el('details', 'entry');
         det.appendChild(top);
         var box = el('div', 'more');
-        if (i.more) box.appendChild(el('p', null, i.more));
+        if (i.how && i.how.length) {
+          box.appendChild(el('h4', null, 'How to do it'));
+          var ol = el('ol');
+          i.how.forEach(function (s) { ol.appendChild(el('li', null, s)); });
+          box.appendChild(ol);
+        }
+        if (i.more) {
+          box.appendChild(el('h4', null, 'Why it matters'));
+          box.appendChild(el('p', null, i.more));
+        }
         if (i.link) {
           var l = el('a', null, 'Open the source \u2197');
           l.href = i.link; l.target = '_blank'; l.rel = 'noopener';
           box.appendChild(l);
         }
+        box.appendChild(el('h4', null, 'Learn more with Claude'));
+        var ask = el('div', 'ask');
+        var ta = el('textarea');
+        ta.readOnly = true;
+        ta.value = askPrompt(i);
+        ask.appendChild(ta);
+        var cb = el('button', null, 'Copy prompt');
+        cb.type = 'button';
+        var note = el('span', 'copied');
+        cb.addEventListener('click', function () {
+          var ok = false;
+          try { navigator.clipboard.writeText(ta.value).then(function () { note.textContent = 'Copied. Paste it into a Claude session.'; }, function () { ta.select(); note.textContent = 'Select and copy the text above.'; }); ok = true; } catch (e) {}
+          if (!ok) { ta.select(); note.textContent = 'Select and copy the text above.'; }
+        });
+        ask.appendChild(cb);
+        ask.appendChild(note);
+        box.appendChild(ask);
         det.appendChild(box);
         a.appendChild(det);
       }
@@ -185,6 +219,13 @@ function renderList() {
     });
     list.appendChild(sec);
   });
+}
+function askPrompt(i) {
+  var p = 'Walk me through this practice step by step, as if I have not done it before. Check each step against current docs or my files, say which parts you could not verify, and ask before changing anything.\n\n';
+  p += 'Practice: ' + i.t + '\nWhat it is: ' + i.d + '\nWhere it applies: ' + i.w + '\nSource: ' + i.src + (i.link ? ' (' + i.link + ')' : '') + '\n';
+  if (i.how && i.how.length) p += 'Steps drafted so far: ' + i.how.map(function (s, n) { return (n + 1) + '. ' + s; }).join(' ') + '\n';
+  if (i.more) p += 'Background: ' + i.more + '\n';
+  return p;
 }
 function render() { renderFilters(); renderList(); }
 if (!GROUPS.concat([{ key: 'all' }]).some(function (g) { return g.key === active; })) active = 'all';

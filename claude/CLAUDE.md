@@ -43,7 +43,9 @@ chat replies, not just files.
 
 Whenever you change `research/PRACTICES.md` in any session (a status flip, a
 new entry), run `node research/practices-page.js` and publish its output to the
-existing page linked in `research/README.md` before you finish.
+existing page linked in `research/README.md` before you finish. Every `pending` and
+`noted` entry needs a `how` field: two to five steps with the exact file, command or
+wording, so Matt can follow it without opening the source.
 
 ## Background agents
 
