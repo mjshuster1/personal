@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Installs this repo's session rules, hooks and agents into ~/.claude/.
+// Installs this repo's session rules, hooks, permissions and agents into ~/.claude/.
 // Safe to re-run: it replaces its own pieces and leaves everything else alone.
 //
 //   node install.js             cloud: copies files into ~/.claude/
@@ -58,6 +58,30 @@ function hooks() {
   log(`hooks registered: ${fwd(script)}`);
 }
 
+// Composio tools Matt wants without a prompt. Merged into permissions.allow,
+// never replacing rules already there. MULTI_EXECUTE_TOOL also runs writes;
+// the read-only rule lives in skills/composio-google.
+const ALLOW = [
+  'mcp__Composio__COMPOSIO_SEARCH_TOOLS',
+  'mcp__Composio__COMPOSIO_GET_TOOL_SCHEMAS',
+  'mcp__Composio__COMPOSIO_MANAGE_CONNECTIONS',
+  'mcp__Composio__COMPOSIO_MULTI_EXECUTE_TOOL',
+];
+
+function permissions() {
+  const file = path.join(home, 'settings.json');
+  let s = {};
+  if (fs.existsSync(file)) {
+    try { s = JSON.parse(fs.readFileSync(file, 'utf8')); }
+    catch (e) { log(`settings.json didn't parse, permissions not set: ${e.message}`); return; }
+  }
+  s.permissions = s.permissions || {};
+  const cur = s.permissions.allow || [];
+  s.permissions.allow = [...cur, ...ALLOW.filter(r => !cur.includes(r))];
+  fs.writeFileSync(file, JSON.stringify(s, null, 2) + '\n');
+  log(`permissions allow: ${ALLOW.length} Composio tools`);
+}
+
 function agents() {
   if (inPlace) return;
   const src = path.join(repo, 'agents');
@@ -69,7 +93,7 @@ function agents() {
   log('agents copied');
 }
 
-for (const step of [rules, hooks, agents]) {
+for (const step of [rules, hooks, permissions, agents]) {
   try { fs.mkdirSync(home, { recursive: true }); step(); }
   catch (e) { log(`${step.name} failed: ${e.message}`); }
 }

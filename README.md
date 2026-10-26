@@ -24,6 +24,7 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 |---|---|
 | `claude/CLAUDE.md` | user-level rules for every session: Eastern-time timestamps and background-agent updates, commit straight to the default branch, cheapest capable model per subtask, how web access works in cloud sessions |
 | `hooks/et-time.js` | on each message, gives Claude the current Eastern time and date; when the session context is 250k+ tokens and the cache is warm, adds one line telling Claude to offer a handoff. Reads the session transcript, whose format is internal to Claude Code, so that line is best-effort and fails silent (re-check steps are in the file header) |
+| `install.js` (permissions step) | allows four Composio tools (search, get schemas, manage connections, multi-execute) without a prompt, merged into `~/.claude/settings.json` and never replacing other rules. Multi-execute also runs writes, so read-only is enforced by `skills/composio-google`, not by a permission |
 | `agents/karpathy-structural-review.md` | the structural reviewer `claude/CLAUDE.md` says to run before any structural change; carries its own copy of the pattern it checks against |
 
 | file | what it does |
