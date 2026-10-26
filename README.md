@@ -24,6 +24,11 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 | `hooks/et-time.js` | on each message, gives Claude the current Eastern time and date; when the session context is 250k+ tokens and the cache is warm, adds one line telling Claude to offer a handoff. Reads the session transcript, whose format is internal to Claude Code, so that line is best-effort and fails silent (re-check steps are in the file header) |
 | `agents/karpathy-structural-review.md` | the structural reviewer `claude/CLAUDE.md` says to run before any structural change; carries its own copy of the pattern it checks against |
 
+| file | what it does |
+|---|---|
+| `inventory.md` | every skill and agent available to Matt's sessions (his own, plugin, built-in), source of truth for the web page at https://claude.ai/artifact/1L6onUFELu2jmU1F3ReLzT |
+| `inventory.html` | the page source, republished to that URL; regenerate both from the agent and skill files and the session's live lists |
+
 Company voice stays with the company: Cuepri's `voice.md` and
 `voice-samples/` live in `gtm-vault/vault/Cuepri/`, and layer on top of
 `personal-voice`. Nothing in this repo may name a company, product,
