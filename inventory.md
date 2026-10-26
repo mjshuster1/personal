@@ -14,6 +14,7 @@ Edited in the personal repo, under skills/. Installed into every session by the 
 - de-slop | Rewrites text to strip AI tells and match your voice, plus the company voice file when the repo has one.
 - document-review | Reviews a document in four passes, in order: substance, slop, bloat, clarity.
 - expert-panel | Adversarial expert panel on a decision: independent opinions, cross-examination, fact check, disagreement map. Runs inline in chat.
+- composio-google | How to read your venture and personal Gmail and Drive through Composio: account aliases, always name the account (the default Gmail account is the day-job inbox), read-only.
 - ai-research-digest | Weekly routine only. Method, scoring rules and source list for the AI research report. Not for normal sessions. | routine only
 
 ## Your skill in the Cuepri workspace [yours]

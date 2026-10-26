@@ -1,8 +1,9 @@
 # personal
 
-Matt's working rules that hold in every project and every company: how he
-writes, how drafts get cleaned up, how documents get reviewed. Plain
-markdown, nothing tied to one model or tool.
+Matt's working rules that hold in every project: how he writes, how drafts
+get cleaned up, how documents get reviewed, and how his tools are reached.
+The voice and review skills hold at any company; `composio-google` is
+Matt-specific tooling. Plain markdown, nothing tied to one model.
 
 ## What's here
 
@@ -12,6 +13,7 @@ markdown, nothing tied to one model or tool.
 | `skills/de-slop/` | rewrites a draft to strip AI tells and pull it toward `personal-voice`, plus a company `voice.md` when the repo has one |
 | `skills/document-review/` | reviews a document in four passes, always in this order: substance, slop, bloat, clarity |
 | `skills/expert-panel/` | runs an adversarial expert panel on a decision: frame, brainstorm, independent opinions, cross-examination, fact check, disagreement map, synthesis, cut. Full or light run by stakes. Inline in chat |
+| `skills/composio-google/` | how to read Matt's venture and personal Gmail and Drive through Composio: account aliases, always name the account (the default Gmail account is the day-job inbox), read-only, Drive read steps |
 | `skills/ai-research-digest/` | routine only, not for normal sessions: the weekly method, scoring rules and source list for AI research. Writes `research/YYYY-MM-DD.md` |
 | `research/` | the weekly reports, 12 weeks kept, and `PRACTICES.md`, the permanent log of what is in force, rejected or pending; read by the next run to avoid repeats. Not copied into sessions |
 
@@ -31,9 +33,12 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 
 Company voice stays with the company: Cuepri's `voice.md` and
 `voice-samples/` live in `gtm-vault/vault/Cuepri/`, and layer on top of
-`personal-voice`. Nothing in this repo may name a company, product,
-customer, or industry. (The research source list names public
-creators and publications only, never anyone Matt works for.)
+`personal-voice`. The two voice skills (`personal-voice`, `de-slop`) name
+no company, product, customer or industry, so they hold anywhere. Other
+skills, like `composio-google`, may name tools, account aliases and Matt's
+own addresses. Nothing in this repo may name a client or customer, hold PHI,
+or hold an employer's confidential material. (The research source list names
+public creators and publications only, never anyone Matt works for.)
 
 ## This repo is the only place to edit
 
@@ -83,7 +88,7 @@ exit 0
 `~/.claude/skills/` once:
 
 ```bat
-for %s in (personal-voice de-slop document-review expert-panel) do mklink /J "%USERPROFILE%\.claude\skills\%s" "C:\Users\mjshu\Dev\AI_OS\personal\skills\%s"
+for %s in (personal-voice de-slop document-review expert-panel composio-google) do mklink /J "%USERPROFILE%\.claude\skills\%s" "C:\Users\mjshu\Dev\AI_OS\personal\skills\%s"
 ```
 
 Then, once, from the clone (Windows `cmd`). Check first that the old
