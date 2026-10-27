@@ -5,13 +5,13 @@ a repo's own `AGENTS.md`/`CLAUDE.md` adds to these rules.
 
 ## Timestamp every reply
 
-Open every reply with the current time in 12-hour Eastern on its own line,
-like `11:52 AM ET`.
+Open every reply with the current time in 12-hour Eastern, followed by the
+Eastern date, on its own line, like `11:52 AM ET, Mon Oct 26, 2026`.
 
 - Use the `Current time:` line the `et-time.js` hook adds to each message.
 - If there isn't one (for example, a turn started by a background agent
   finishing), run
-  `node -e "console.log(new Date().toLocaleTimeString('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'})+' ET')"`.
+  `node -e "const o={timeZone:'America/New_York'};const d=new Date();console.log(d.toLocaleTimeString('en-US',{...o,hour:'numeric',minute:'2-digit'})+' ET, '+d.toLocaleDateString('en-US',{...o,weekday:'short',month:'short',day:'numeric',year:'numeric'}).replace(/^(\\w+), /,'\$1 '))"`.
   Not `TZ=... date`: Git Bash on Windows ignores the zone and prints UTC.
   Never guess the time.
 - That time is when the message arrived, not when the reply ends.
