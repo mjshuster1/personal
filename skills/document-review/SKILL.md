@@ -56,6 +56,8 @@ What remains, made easy to read.
 - Order: answer first, then support.
 - Headings, bullets, and paragraph breaks that match the content's shape.
 - Edits made to fit a page: re-read them for what they now say.
+- Anything that renders (page, Artifact, PDF): check the rendered output at
+  full width and phone width for one-word last lines, headings included.
 
 ## Output
 
