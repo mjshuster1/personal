@@ -34,9 +34,11 @@ the id off the alias.
    Confirm the account you need is active and its address matches the
    table. If not, stop and tell Matt; don't fall back to another account.
    If the table is out of date, say so and fix it in the same change.
-4. Read only unless Matt asks for more in the same request. No send,
-   draft, label, archive, delete, share or move. Never create a Gmail
-   draft; email drafts go in chat.
+4. Read only unless Matt asks for more in the same request. No draft,
+   label, archive, delete, share or move. Send only when Matt asks for
+   that send in the current conversation, or an approved skill names the
+   recipient and the send (`sick-day`). Never create a Gmail draft; email
+   drafts go in chat.
 5. No workbench or bash tools for mail or files. Don't guess tool slugs;
    look them up with `COMPOSIO_SEARCH_TOOLS`.
 

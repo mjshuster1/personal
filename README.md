@@ -14,6 +14,7 @@ Matt-specific tooling. Plain markdown, nothing tied to one model.
 | `skills/document-review/` | reviews a document in four passes, always in this order: substance, slop, bloat, clarity |
 | `skills/expert-panel/` | runs an adversarial expert panel on a decision: frame, brainstorm, independent opinions, cross-examination, fact check, disagreement map, synthesis, cut. Full or light run by stakes. Inline in chat |
 | `skills/composio-google/` | how to read Matt's venture and personal Gmail and Drive through Composio: account aliases, always name the account (the default Gmail account is the day-job inbox), read-only, Drive read steps |
+| `skills/sick-day/` | "Quickly, <name> is home sick": emails the aftercare address from the personal Gmail through Composio, and holds a placeholder for reporting the absence to the school. Names and addresses come from `SICKDAY_*` environment variables in the cloud environment, never from this public repo |
 | `skills/ai-research-digest/` | routine only, not for normal sessions: the weekly method, scoring rules and source list for AI research. Writes `research/YYYY-MM-DD.md` |
 | `research/` | the weekly reports, 12 weeks kept, and `PRACTICES.md`, the permanent log of what is in force, rejected or pending; read by the next run to avoid repeats. Not copied into sessions |
 
@@ -24,7 +25,7 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 |---|---|
 | `claude/CLAUDE.md` | user-level rules for every session: Eastern-time timestamps and background-agent updates, commit straight to the default branch, cheapest capable model per subtask, how web access works in cloud sessions |
 | `hooks/et-time.js` | on each message, gives Claude the current Eastern time and date; when the session context is 250k+ tokens and the cache is warm, adds one line telling Claude to offer a handoff. Reads the session transcript, whose format is internal to Claude Code, so that line is best-effort and fails silent (re-check steps are in the file header) |
-| `install.js` (permissions step) | allows four Composio tools (search, get schemas, manage connections, multi-execute) without a prompt, merged into `~/.claude/settings.json` and never replacing other rules. Multi-execute also runs writes, so read-only is enforced by `skills/composio-google`, not by a permission |
+| `install.js` (permissions step) | allows four Composio tools (search, get schemas, manage connections, multi-execute) without a prompt, merged into `~/.claude/settings.json` and never replacing other rules. Multi-execute also runs writes, so read-only (sends only from `skills/sick-day` or when Matt asks) is enforced by `skills/composio-google`, not by a permission |
 | `agents/karpathy-structural-review.md` | the structural reviewer `claude/CLAUDE.md` says to run before any structural change; carries its own copy of the pattern it checks against |
 
 | file | what it does |
@@ -89,7 +90,7 @@ exit 0
 `~/.claude/skills/` once:
 
 ```bat
-for %s in (personal-voice de-slop document-review expert-panel composio-google) do mklink /J "%USERPROFILE%\.claude\skills\%s" "C:\Users\mjshu\Dev\AI_OS\personal\skills\%s"
+for %s in (personal-voice de-slop document-review expert-panel composio-google sick-day) do mklink /J "%USERPROFILE%\.claude\skills\%s" "C:\Users\mjshu\Dev\AI_OS\personal\skills\%s"
 ```
 
 Then, once, from the clone (Windows `cmd`). Check first that the old

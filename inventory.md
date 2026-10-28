@@ -1,6 +1,6 @@
 # Skills and agents inventory
 
-Updated: 2026-10-26
+Updated: 2026-10-27
 Page: https://claude.ai/artifact/1L6onUFELu2jmU1F3ReLzT
 
 Source of truth for the page. Build it with `node inventory-page.js` and republish to the URL above.
@@ -15,6 +15,7 @@ Edited in the personal repo, under skills/. Installed into every session by the 
 - document-review | Reviews a document in four passes, in order: substance, slop, bloat, clarity.
 - expert-panel | Adversarial expert panel on a decision: independent opinions, cross-examination, fact check, disagreement map. Runs inline in chat.
 - composio-google | How to read your venture and personal Gmail and Drive through Composio: account aliases, always name the account (the default Gmail account is the day-job inbox), read-only.
+- sick-day | Say a daughter is home sick and it emails the aftercare address from your personal Gmail; the school report is a placeholder until the Bowen form link is found.
 - ai-research-digest | Weekly routine only. Method, scoring rules and source list for the AI research report. Not for normal sessions. | routine only
 
 ## Your skill in the Cuepri workspace [yours]

@@ -76,13 +76,15 @@ then commit and push like anything else.
 No PR or CI monitoring, no scheduled check-ins, no follow-up reminders on
 anything you commit. Don't mention branches or pull requests to Matt.
 
-## Email drafts
+## Email
 
 Write email drafts inline in the chat for Matt to copy into Gmail himself.
-Never create a Gmail draft. Sending email to Matt himself (matt@cuepri.com)
-is fine, for example the `ai-research-digest` routine's weekly report. Never
-send email to anyone else; anything addressed to another person is an inline
-draft only.
+Never create a Gmail draft. Send email only when Matt asks for that send in
+the current conversation, or when a skill he approved names the recipient
+and the send (for example `sick-day`, or the `ai-research-digest` routine's
+weekly report to Matt). The Gmail connector is the Cuepri inbox; send
+personal and venture mail through Composio (`gmail-personal`,
+`gmail-advisory`), per the `composio-google` skill.
 
 Before drafting anything written as Matt (email, text, message, post), load
 the personal-voice skill, check the draft against it, and run it through the
