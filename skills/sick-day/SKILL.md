@@ -35,29 +35,36 @@ Sender: Composio Gmail alias `gmail-personal` (mjshuster1@gmail.com).
    Matt's message. If it's unclear ("one of my daughters"), ask one
    question, naming the options. Nothing else.
 2. **Date.** Use the `Today (ET)` line from the time hook, not the system date.
-3. **Aftercare email.** Load `composio-google` and follow its rules. List the
-   Gmail connections, confirm `gmail-personal` is active and its address is
-   mjshuster1@gmail.com, then send with `GMAIL_SEND_EMAIL`:
-   - `account`: the id read off `gmail-personal` (never the default account,
-     which is the Cuepri inbox)
-   - `recipient_email`: `SICKDAY_AFTERCARE_TO`. If Matt's message contains
-     the word "test", use `SICKDAY_TEST_TO` instead and start the subject
-     with `TEST: `.
-   - `include_signature`: `false`
-   - Subject: `<Name> is out sick today`
-   - Body, exactly:
+3. **Aftercare email.** Load `composio-google` for its rules. This skill's
+   fast path replaces that skill's connection listing and tool search
+   (verified 2026-10-28: the alias works as `account`, and
+   `COMPOSIO_MULTI_EXECUTE_TOOL` runs with no search first). Two calls, in
+   order, each through `COMPOSIO_MULTI_EXECUTE_TOOL` with
+   `sync_response_to_workbench: false` and `account: "gmail-personal"`
+   (never the default account, which is the Cuepri inbox):
+   1. `GMAIL_GET_PROFILE` with `{"user_id": "me"}`. The `emailAddress` must
+      be mjshuster1@gmail.com. If not, stop and tell Matt; don't send.
+   2. `GMAIL_SEND_EMAIL` with these arguments:
+      - `recipient_email`: `SICKDAY_AFTERCARE_TO`. If Matt's message
+        contains the word "test", use `SICKDAY_TEST_TO` instead and start
+        the subject with `TEST: `.
+      - `include_signature`: `false`
+      - `subject`: `<Name> is out sick today`
+      - `body`, exactly:
 
-     ```
-     Hi,
+        ```
+        Hi,
 
-     <Name> is home sick today (<Weekday>, <Month> <day>) and won't be at aftercare.
+        <Name> is home sick today (<Weekday>, <Month> <day>) and won't be at aftercare.
 
-     Thanks,
-     Matt Shuster
-     ```
+        Thanks,
+        Matt Shuster
+        ```
 
    For both daughters, send one email with the subject
-   `<Name> and <Name> are out sick today` and the body naming both.
+   `<Name> and <Name> are out sick today` and the body naming both. If a
+   call is rejected as an unknown tool or for a missing schema, run
+   `COMPOSIO_SEARCH_TOOLS` ("send an email from Gmail"), then retry once.
 4. **School.** Not set up yet (placeholder). Tell Matt: "The school isn't
    automated yet. Report <Name> absent yourself: Bowen's absence line is
    617-559-9350, and the district asks for written notice the same day."
