@@ -10,14 +10,16 @@ Don't polish a sentence in pass 4 that pass 1 or 3 should have cut.
 
 ## Pass 1: Substance
 
-Is it right, and is it the right document?
+Is it the right document for this reader?
 
-- Every factual claim: true, and traceable to a source (doc, call, data). Flag
-  anything that can't be traced as UNVERIFIED rather than assuming it's fine.
-- Claims about what a product or team can do match what it actually does today.
+- Every line serves the actual reader. Cut lines that answer someone else's
+  question: an internal concern, or a point raised by a different person on a call.
 - The main point is the one the reader needs, stated where they'll see it.
 - Nothing important is missing for this reader and this decision.
 - The argument holds: conclusions follow from what comes before.
+- Don't flag product, roadmap, or capability claims as unverified or
+  overstated. Matt owns those; what's true about the product changes faster
+  than any document.
 
 **Gate:** if pass 1 finds a problem that changes the argument, structure, or
 main point, report it and stop. Ask whether to continue. The later passes
@@ -53,6 +55,7 @@ What remains, made easy to read.
 - Ambiguous references ("this", "it", "they") and undefined terms.
 - Order: answer first, then support.
 - Headings, bullets, and paragraph breaks that match the content's shape.
+- Edits made to fit a page: re-read them for what they now say.
 
 ## Output
 
