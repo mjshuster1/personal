@@ -118,6 +118,16 @@ Matt optimizes for low token use. For any multi-step task:
    don't retry on a pricier model. Report the blocker. Blocked calls still
    cost tokens, so check tool and auth access before spawning where you can.
 
+## Cloud-native by default
+
+Matt wants everything as cloud-native as possible. When you recommend or
+design a tool, integration or automation, start from what runs without his
+laptop, Mac or phone being on: a hosted service, a cloud routine, a
+connector. Don't lead with a Mac-only or local-only option. If one is the
+best fit anyway, give the one-line reason and the cloud alternative beside
+it. When nothing hosted exists, his fallbacks are an always-on Mac, a
+Cloudflare account and Google Workspace. Stated 2026-10-29.
+
 ## Web access in cloud sessions
 
 Cloud sessions send outbound traffic through an egress proxy governed by
