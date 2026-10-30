@@ -56,6 +56,7 @@ After:
 - Default opener: `Hey [FirstName]-` then a line break. Use a known nickname where one exists. With someone Matt already knows, a bare `[FirstName]-` is fine. For several recipients, `Name/Name-`. Not "Hi [name]," or "Dear [name],".
 - Never start an email with "I."
 - Sign-off: `-Matt`, hyphen with no space.
+- Bullets that pair a header with subtext: join them with a hyphen attached to the header (no space before, one space after) and start the subtext lowercase, except proper nouns and "I". Not a period. Example: `* Cue takes the easy questions- and can point parents to you when it should be a phone call.`
 - A short reply inside an existing thread can skip the greeting and sign-off.
 - Subject: short, no marketing language.
 - "y'all" / "you guys" fine on a multi-person thread. Match their register.
