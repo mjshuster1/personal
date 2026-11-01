@@ -14,4 +14,7 @@ view of that log. `node research/practices-page.js <out.html>` builds it from
 `PRACTICES.md` and `practices-page.template.html`; publish the output to the
 same page whenever the log changes.
 
+`handoff-*.md` files are session handoffs written for a fresh chat to read,
+not weekly reports. Delete one when its work is done.
+
 Not copied into sessions.
