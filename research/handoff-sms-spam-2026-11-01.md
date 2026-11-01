@@ -75,7 +75,7 @@ to test against. The durability check gates only item 4.
    numbers against a rule list and logs matches. Needs: where new messages enter
    the code (`internal/client/events.go` and `internal/db`), contact lookup, and
    a place for the rules file. Verify the SQLite schema before relying on it.
-2. Add a block-and-report call (new local API endpoint or tool) using libgm
+2. CODE DONE 2026-11-01, fork commit `e5fda2b`: `openmessage spam-block <conversation_id>` (manual, via the running app) and `"mode": "block"` in spam-rules.json (auto, 1:1 only, 25/day cap; off by default). NOT yet tested against the phone. Original scope: Add a block-and-report call (new local API endpoint or tool) using libgm
    `UpdateConversation`. Test it on one spam thread of Matt's.
 3. Daily digest of blocked numbers.
 4. Later: Cloudflare Tunnel, a Worker with Workers OAuth Provider (Google sign-in,
