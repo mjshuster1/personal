@@ -71,7 +71,7 @@ Items 1 to 3 can start now: they run locally on the Mac and do not depend on the
 24-hour durability check, and the midterms are Nov 3, so earlier means real spam
 to test against. The durability check gates only item 4.
 
-1. Phase 1 build: an addition to OpenMessage that checks new texts from unknown
+1. CODE DONE 2026-11-01, fork commit `c55e60f` (`internal/spamwatch`, `openmessage spam-report`). Not yet running on the Mac. Original scope: Phase 1 build: an addition to OpenMessage that checks new texts from unknown
    numbers against a rule list and logs matches. Needs: where new messages enter
    the code (`internal/client/events.go` and `internal/db`), contact lookup, and
    a place for the rules file. Verify the SQLite schema before relying on it.
