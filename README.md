@@ -42,6 +42,12 @@ own addresses. Nothing in this repo may name a client or customer, hold PHI,
 or hold an employer's confidential material. (The research source list names
 public creators and publications only, never anyone Matt works for.)
 
+## Related repos
+
+| repo | what it is |
+|---|---|
+| `mjshuster1/openmessage` | fork of `MaxGhenis/openmessage` (base commit `a455f63`) that reads Matt's Pixel texts through Google Messages pairing. Adds a spam rules check; phase 1 only logs matches. Runs on the Mac mini only; rules and logs stay on the Mac, never in the repo. Handoff: `research/handoff-sms-spam-2026-11-01.md` |
+
 ## This repo is the only place to edit
 
 Each skill folder uses the `SKILL.md` format (a markdown file with a short
