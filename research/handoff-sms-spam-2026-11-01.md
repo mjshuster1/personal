@@ -3,6 +3,38 @@
 Written 2026-11-01 ET. Not a weekly report; kept here only so a fresh chat can
 read it.
 
+## Status at 3 PM ET, Nov 1 (read this first)
+
+Fork `mjshuster1/openmessage`, on `main` above upstream `a455f63`:
+- `c55e60f` spam watcher (log only) and `openmessage spam-report`. Running on
+  the Mac since about 1:20 PM; report was empty at first run.
+- `e5fda2b` block-and-report: `openmessage spam-block <conversation_id>`
+  (manual, through the running app) and `"mode": "block"` in
+  `~/.local/share/openmessage/spam-rules.json` (auto, 1:1 threads only, 25 a
+  day cap). Off by default. Request shape copied from mautrix-gmessages
+  `pkg/connector/handlematrix.go` HandleMatrixBlockUser.
+- `01c3300` `serve --mcp-read-only` (9 read tools, allowlist), an end-to-end
+  spam test, and `cloud/worker/` (Cloudflare Worker with Google sign-in for
+  one email, method/tool/header allowlists; 86 tests). Structural review
+  approved `cloud/worker/` in the fork with one shared tool list
+  (`cloud/worker/readonly-tools.json`, checked by a Go test).
+
+Not yet done or known:
+- Mac has NOT pulled `e5fda2b` or `01c3300`. The manual block test (pull,
+  `go build -o openmessage .`, restart `./openmessage serve`, `./openmessage
+  threads --limit 30`, `./openmessage spam-block <id>`, check Spam & blocked
+  on the Pixel) has not been run. It answers whether Google accepts a block
+  from this pairing.
+- 24-hour check Nov 2 about 11:40 AM ET gates the Worker deploy.
+- Unverified until deploy: claude.ai's OAuth path (DCR or CIMD, both on;
+  consent page) and real SSE responses through the filter.
+- Review the spam log around Nov 4 before turning on `"mode": "block"`.
+
+What failed this session:
+- Remote Control: `~/openmessage` is in the Mac's list but reported "not
+  available" to cloud sessions; not hidden, not Windows, app up to date.
+  Cause unknown. `claude` CLI is not installed on the Mac.
+
 ## Goal
 
 1. Make Matt's Pixel text messages searchable from Claude, as cloud-native as
@@ -78,7 +110,7 @@ to test against. The durability check gates only item 4.
 2. CODE DONE 2026-11-01, fork commit `e5fda2b`: `openmessage spam-block <conversation_id>` (manual, via the running app) and `"mode": "block"` in spam-rules.json (auto, 1:1 only, 25/day cap; off by default). NOT yet tested against the phone. Original scope: Add a block-and-report call (new local API endpoint or tool) using libgm
    `UpdateConversation`. Test it on one spam thread of Matt's.
 3. Daily digest of blocked numbers.
-4. Later: Cloudflare Tunnel, a Worker with Workers OAuth Provider (Google sign-in,
+4. CODE DONE 2026-11-01, fork commit `01c3300`: `serve --mcp-read-only` and `cloud/worker/` (see its README for the deploy checklist). NOT deployed; waits on the 24-hour check. Original scope: Cloudflare Tunnel, a Worker with Workers OAuth Provider (Google sign-in,
    Matt's account only), read-only tool filtering so a malicious text cannot make
    Claude send messages, host header rewrite to `127.0.0.1:7007`. Optional
    allowlist of Anthropic's outbound range `160.79.104.0/21`.
