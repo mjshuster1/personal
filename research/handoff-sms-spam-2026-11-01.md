@@ -3,7 +3,18 @@
 Written 2026-11-01 ET. Not a weekly report; kept here only so a fresh chat can
 read it.
 
-## Status at 3 PM ET, Nov 1 (read this first)
+## Update 3:20 PM ET, Nov 1 (read this first)
+
+- Matt dropped the 24-hour gate: deploy the Worker now; the Nov 2 check is a
+  health check, not a gate.
+- Design changed: no domain, no Cloudflare Access. claude.ai -> Worker on
+  workers.dev -> Workers VPC Service (tunnel, host 127.0.0.1, port 7007) ->
+  cloudflared on the Mac -> OpenMessage. Fork commit after `01c3300` makes
+  that change; `cloud/worker/README.md` has the new 10-step checklist.
+  shusteradvisory.com rejected: its DNS is on Squarespace with Google mail.
+- Deploy walkthrough started at step 1 (create the tunnel).
+
+## Status at 3 PM ET, Nov 1
 
 Fork `mjshuster1/openmessage`, on `main` above upstream `a455f63`:
 - `c55e60f` spam watcher (log only) and `openmessage spam-report`. Running on
