@@ -81,9 +81,25 @@ read it.
 
 ## Open decisions for Matt
 
-- Where the patched code lives. Cleanest: his own GitHub fork of OpenMessage.
-  A new repo is a structural change, so run `karpathy-structural-review` first
-  (`claude/CLAUDE.md`).
+- DECIDED 2026-11-01: the code lives in Matt's own fork, `mjshuster1/openmessage`
+  (Matt clicks Fork on GitHub; not created yet when this was written).
+  `karpathy-structural-review` verdict: approve with changes:
+  - Keep the patch in new files (a separate package) with one small call site in
+    `internal/client/events.go`, so upstream merges stay small.
+  - No sync routine. Sync by hand before each phase (GitHub "Sync fork", or
+    `git fetch upstream && git rebase upstream/main`). Record the upstream base
+    commit (`a455f63`) in the fork's README.
+  - Repoint `~/openmessage` `origin` at the fork; no second clone.
+  - The rules file and the log hold spam numbers and message content. Gitignore
+    them and keep them in `~/.local/share/openmessage`, never in the public fork.
+  - Phase 2 calls libgm's `UpdateConversation`; do not copy or vendor libgm.
+  - When the fork exists, add one "Related repos" entry to
+    `/home/user/personal/README.md` in the same change (fork of
+    MaxGhenis/openmessage, spam rules addition, runs only on the Mac mini, base
+    commit, phase 1 is log-only). Delete this handoff once the fork's README
+    carries its content.
+- The fresh chat needs push access to the fork: call `add_repo` with
+  `access: "push"` for `mjshuster1/openmessage`.
 - The patch is written and reviewed in the cloud, but only the Mac can run it.
   Matt is not technical: give copy-paste Terminal steps, one command at a time.
   Remind him that copying anything else replaces the clipboard.
