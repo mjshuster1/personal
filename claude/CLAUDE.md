@@ -36,6 +36,9 @@ chat replies, not just files.
   overwrite the same file then.
 - When a session crosses midnight ET or Matt has reversed a design twice, say
   so and offer a handoff once.
+- Handoff files live in `handoffs/` at the root of the repo the session is
+  in, not in `personal`. If the folder is new, add one line for it to that
+  repo's README map in the same commit.
 - A session that starts from a handoff file deletes it once the work is picked
   up, and commits the delete.
 - A handoff means a handoff file (goal, done, left, decisions, what failed)
