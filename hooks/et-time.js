@@ -2,7 +2,7 @@
 // UserPromptSubmit hook, registered by install.js: adds "Current time: 11:52 AM ET"
 // and "Today (ET): Tuesday, October 20, 2026" to Claude's context on each
 // message. When the session context is large and its prompt cache is warm it adds
-// one more line telling Claude to offer a handoff (see contextNote). Always exits
+// one more line telling Claude to write a handoff file (see contextNote). Always exits
 // 0, so a broken clock or transcript never blocks a prompt.
 // The transcript format is internal to Claude Code, so this is best-effort and
 // fails silent. To re-check after a Claude Code update: pipe
@@ -15,7 +15,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const WARN_AT = 250000;     // tokens: offer a handoff once the context reaches this, while the cache is warm
+const WARN_AT = 250000;     // tokens: write a handoff once the context reaches this, while the cache is warm
 const WARN_STEP = 100000;   // tokens: warn again only after this much further growth
 const TTL_MIN = { '1h': 60, '5m': 5 };
 const TAIL_STEPS = [1, 4, 16].map(m => m * 1024 * 1024); // widen only if no assistant turn is in the tail
@@ -79,7 +79,9 @@ function contextNote(input, nowMs) {
   let line = '';
   if (t.ctx < WARN_AT) st.level = 0; // reset after a compaction or handoff
   if (!cold && t.ctx >= WARN_AT && !(st.level && t.ctx < st.level + WARN_STEP)) {
-    line = `Context is about ${k(t.ctx)} tokens and the cache is warm. If the work is not nearly done, offer a handoff once, now while it is cheap.`;
+    const day = new Date(nowMs).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+    const sid8 = String(input.session_id || 'nosession').replace(/[^A-Za-z0-9]/g, '').slice(0, 8);
+    line = `Context is about ${k(t.ctx)} tokens and the cache is warm. Write the handoff file now to handoffs/${day}-${sid8}.md (overwrite it if it exists), then tell Matt the path.`;
     st.level = t.ctx;
   }
   try { fs.writeFileSync(sp, JSON.stringify(st)); } catch (e) {}

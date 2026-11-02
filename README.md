@@ -16,6 +16,7 @@ Matt-specific tooling. Plain markdown, nothing tied to one model.
 | `skills/composio-google/` | how to read Matt's venture and personal Gmail and Drive through Composio: account aliases, always name the account (the default Gmail account is the day-job inbox), read-only, Drive read steps |
 | `skills/sick-day/` | "Quickly, <name> is home sick": emails the aftercare address from the personal Gmail through Composio, and holds a placeholder for reporting the absence to the school. Names and addresses come from `SICKDAY_*` environment variables in the cloud environment, never from this public repo |
 | `skills/ai-research-digest/` | routine only, not for normal sessions: the weekly method, scoring rules and source list for AI research. Writes `research/YYYY-MM-DD.md` |
+| `handoffs/` | session handoffs a fresh chat reads to pick up work; see its README. Not copied into sessions |
 | `research/` | the weekly reports, 12 weeks kept, and `PRACTICES.md`, the permanent log of what is in force, rejected or pending; read by the next run to avoid repeats. Not copied into sessions |
 
 Session rules, hooks and agents, installed into `~/.claude/` by
@@ -24,7 +25,7 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 | file | what it does |
 |---|---|
 | `claude/CLAUDE.md` | user-level rules for every session: Eastern-time timestamps and background-agent updates, commit straight to the default branch, cheapest capable model per subtask, how web access works in cloud sessions |
-| `hooks/et-time.js` | on each message, gives Claude the current Eastern time and date; when the session context is 250k+ tokens and the cache is warm, adds one line telling Claude to offer a handoff. Reads the session transcript, whose format is internal to Claude Code, so that line is best-effort and fails silent (re-check steps are in the file header) |
+| `hooks/et-time.js` | on each message, gives Claude the current Eastern time and date; when the session context is 250k+ tokens and the cache is warm, adds one line telling Claude to write a handoff file to `handoffs/`. Reads the session transcript, whose format is internal to Claude Code, so that line is best-effort and fails silent (re-check steps are in the file header) |
 | `install.js` (permissions step) | allows four Composio tools (search, get schemas, manage connections, multi-execute) without a prompt, merged into `~/.claude/settings.json` and never replacing other rules. Multi-execute also runs writes, so read-only (sends only from `skills/sick-day` or when Matt asks) is enforced by `skills/composio-google`, not by a permission |
 | `agents/karpathy-structural-review.md` | the structural reviewer `claude/CLAUDE.md` says to run before any structural change; carries its own copy of the pattern it checks against |
 
@@ -46,7 +47,7 @@ public creators and publications only, never anyone Matt works for.)
 
 | repo | what it is |
 |---|---|
-| `mjshuster1/openmessage` | fork of `MaxGhenis/openmessage` (base commit `a455f63`) that reads Matt's Pixel texts through Google Messages pairing. Adds a spam rules check that logs matches, plus block-and-report (manual command; automatic mode off by default), an MCP read-only mode, and a Cloudflare Worker connector for claude.ai in `cloud/worker/` (not deployed). The app runs on the Mac mini only; rules and logs stay on the Mac, never in the repo. Handoff: `research/handoff-sms-spam-2026-11-01.md` |
+| `mjshuster1/openmessage` | fork of `MaxGhenis/openmessage` (base commit `a455f63`) that reads Matt's Pixel texts through Google Messages pairing. Adds a spam rules check that logs matches, plus block-and-report (manual command; automatic mode off by default), an MCP read-only mode, and a Cloudflare Worker connector for claude.ai in `cloud/worker/` (not deployed). The app runs on the Mac mini only; rules and logs stay on the Mac, never in the repo. Handoff: `handoffs/handoff-sms-spam-2026-11-01.md` |
 
 ## This repo is the only place to edit
 

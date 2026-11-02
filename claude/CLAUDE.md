@@ -29,10 +29,15 @@ chat replies, not just files.
 
 - After Matt overrides a design, restate the current design in one line
   before building on it.
-- When a session crosses midnight ET, Matt has reversed a design twice, or the
-  time hook reports a large context (about 250k tokens or more), say so and
-  offer a handoff once. Don't repeat the
-  offer; the hook repeats its line only after substantial growth.
+- When the time hook reports a large context (about 250k tokens or more),
+  write the handoff file now, at the path the hook gives, and tell Matt the
+  path in one line. Don't ask first: the cache is warm now and cold
+  tomorrow. The hook repeats its line only after substantial growth;
+  overwrite the same file then.
+- When a session crosses midnight ET or Matt has reversed a design twice, say
+  so and offer a handoff once.
+- A session that starts from a handoff file deletes it once the work is picked
+  up, and commits the delete.
 - A handoff means a handoff file (goal, done, left, decisions, what failed)
   that Matt can review, then a fresh chat pointed at it. Don't use /compact
   as a cost cut: it adds a full read and can drop early instructions.
