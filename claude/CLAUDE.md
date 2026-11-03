@@ -29,7 +29,7 @@ chat replies, not just files.
 
 - After Matt overrides a design, restate the current design in one line
   before building on it.
-- When the time hook reports a large context (about 250k tokens or more),
+- When the time hook reports a large context (about 400k tokens or more),
   write the handoff file now, at the path the hook gives, and tell Matt the
   path in one line, then paste the file's Kickstart prompt in a copy-paste
   block in that same reply (the file keeps a copy; the reply always shows

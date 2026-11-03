@@ -7,7 +7,7 @@
 // The transcript format is internal to Claude Code, so this is best-effort and
 // fails silent. To re-check after a Claude Code update: pipe
 //   {"transcript_path":"<a long session .jsonl>","session_id":"x"}
-// into this script; a session of 250k+ tokens should print a third line.
+// into this script; a session of 400k+ tokens should print a third line.
 // A Stop-hook "Finished" line was tried 2026-10-04 and dropped: the Claude app
 // didn't display it.
 // Single file on purpose: install.js copies only this file into cloud sessions.
@@ -15,7 +15,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const WARN_AT = 250000;     // tokens: write a handoff once the context reaches this, while the cache is warm
+const WARN_AT = 400000;     // tokens: write a handoff once the context reaches this, while the cache is warm
 const WARN_STEP = 100000;   // tokens: warn again only after this much further growth
 const TTL_MIN = { '1h': 60, '5m': 5 };
 const TAIL_STEPS = [1, 4, 16].map(m => m * 1024 * 1024); // widen only if no assistant turn is in the tail
