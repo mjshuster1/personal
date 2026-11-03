@@ -31,7 +31,9 @@ chat replies, not just files.
   before building on it.
 - When the time hook reports a large context (about 250k tokens or more),
   write the handoff file now, at the path the hook gives, and tell Matt the
-  path in one line. Don't ask first: the cache is warm now and cold
+  path in one line, then paste the file's Kickstart prompt in a copy-paste
+  block in that same reply (the file keeps a copy; the reply always shows
+  it). Don't ask first: the cache is warm now and cold
   tomorrow. The hook repeats its line only after substantial growth;
   overwrite the same file then.
 - When a session crosses midnight ET or Matt has reversed a design twice, say

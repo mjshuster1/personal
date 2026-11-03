@@ -81,7 +81,7 @@ function contextNote(input, nowMs) {
   if (!cold && t.ctx >= WARN_AT && !(st.level && t.ctx < st.level + WARN_STEP)) {
     const day = new Date(nowMs).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
     const sid8 = String(input.session_id || 'nosession').replace(/[^A-Za-z0-9]/g, '').slice(0, 8);
-    line = `Context is about ${k(t.ctx)} tokens and the cache is warm. Write the handoff file now to handoffs/${day}-${sid8}.md (overwrite it if it exists), then tell Matt the path.`;
+    line = `Context is about ${k(t.ctx)} tokens and the cache is warm. Write the handoff file now to handoffs/${day}-${sid8}.md (overwrite it if it exists), then tell Matt the path and paste its Kickstart prompt in a copy-paste block in the same reply.`;
     st.level = t.ctx;
   }
   try { fs.writeFileSync(sp, JSON.stringify(st)); } catch (e) {}
