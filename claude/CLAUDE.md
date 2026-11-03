@@ -30,7 +30,7 @@ chat replies, not just files.
 - After Matt overrides a design, restate the current design in one line
   before building on it.
 - When the time hook reports a large context (about 400k tokens or more),
-  write the handoff file now, at the path the hook gives, and tell Matt the
+  write the handoff file now (where: see Handoff files below), tell Matt the
   path in one line, then paste the file's Kickstart prompt in a copy-paste
   block in that same reply (the file keeps a copy; the reply always shows
   it). Don't ask first: the cache is warm now and cold
@@ -38,9 +38,12 @@ chat replies, not just files.
   overwrite the same file then.
 - When a session crosses midnight ET or Matt has reversed a design twice, say
   so and offer a handoff once.
-- Handoff files live in `handoffs/` at the root of the repo the session is
-  in, not in `personal`. If the folder is new, add one line for it to that
-  repo's README map in the same commit.
+- Handoff files: they go in the repo the session is in, not in `personal`. Use
+  that repo's existing handoff convention if it has one (consultant-workspace
+  keeps `HANDOFF-<date>-<topic>.md` at its root), even over the hook's path;
+  otherwise use `handoffs/` at the repo root, as the hook says. If that
+  folder is new, add one line for it to the repo's README map in the same
+  commit.
 - A session that starts from a handoff file deletes it once the work is picked
   up, and commits the delete.
 - A handoff means a handoff file (goal, done, left, decisions, what failed)
