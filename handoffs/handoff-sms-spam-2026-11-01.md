@@ -3,7 +3,24 @@
 Written 2026-11-01 ET. Not a weekly report; kept here only so a fresh chat can
 read it.
 
-## Update 10:45 PM ET, Nov 2 (read this first)
+## Update 8:25 AM ET, Nov 3 (read this first)
+
+- Manual block test PASSED: `spam-block 4118` (Talarico text) showed in the
+  Pixel's Spam & blocked.
+- Fork `1213d66`: `spam-scan [--days N] [--block] [--max N]` (history scan via
+  `POST /api/spam/scan`; `--block` block-and-reports, 25 per run, 3s apart) and
+  `scripts/mac-autorun/` (launchd agent keeps `serve --web --mcp-sse
+  --mcp-read-only` running; updater every 30 min: ff to fork main, build,
+  test, swap, restart). Structural review approved with changes, applied.
+- Next on the Mac, in order: Control+C the Terminal server; `cd ~/openmessage
+  && git pull && go build -o openmessage .`; `scripts/mac-autorun/install.sh`;
+  `./openmessage spam-scan --days 30` and review; add rules (`talarico`,
+  `jamestalarico.com`, `demsenate.org`, `dscc`) to
+  `~/.local/share/openmessage/spam-rules.json`; `spam-scan --block`; then set
+  `"mode": "block"`.
+- Agents need a logged-in user after reboot (auto-login needs FileVault off).
+
+## Update 10:45 PM ET, Nov 2
 
 - DEPLOYED. claude.ai connector "Texts" at
   `https://openmessage-connector.mjshuster1.workers.dev/mcp`, signed in with
