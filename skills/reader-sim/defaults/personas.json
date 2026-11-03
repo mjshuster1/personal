@@ -1,0 +1,13 @@
+{
+  "_note": "Default audience: clinical directors at behavioral health programs. Replace for other audiences. budget = seconds for email in this sitting.",
+  "personas": {
+    "A": { "budget": 60, "who": "You are the clinical director of a 40-bed residential SUD and mental health program. It is 2:15 pm. You have a few minutes between a treatment team meeting and a family session, on your phone." },
+    "B": { "budget": 150, "who": "You are the clinical director of an outpatient PHP/IOP program with three sites. It is 7:40 am at your desk, working through about 60 unread emails before the day starts. You like the vendor and are careful about safety workflows." },
+    "C": { "budget": 45, "who": "You are a clinical director three months into the job at a residential program that already used this vendor before you arrived. You did not pick the vendor, you are stretched thin, and you archive most vendor email. Late afternoon, between tasks." }
+  },
+  "events": [
+    "A tech knocks: a client on the unit is escalating and staff need you now.",
+    "Your phone rings: a payer reviewer is on the line for a continued stay review.",
+    "A family member arrives early for a session and is waiting at the front desk."
+  ]
+}

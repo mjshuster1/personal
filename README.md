@@ -12,6 +12,7 @@ Matt-specific tooling. Plain markdown, nothing tied to one model.
 | `skills/personal-voice/` | Matt's personal voice: stance (matter-of-fact, never from authority), tone, sentence rules, email openers, hard banned words, punctuation |
 | `skills/de-slop/` | rewrites a draft to strip AI tells and pull it toward `personal-voice`, plus a company `voice.md` when the repo has one |
 | `skills/document-review/` | reviews a document in four passes, always in this order: substance, slop, bloat, clarity |
+| `skills/reader-sim/` | simulates busy readers getting an email for the first time: phone inbox, one screen at a time, time budget, interruptions, memory quiz. Scores an original, rewrites and a tight control on comprehension and how far readers got. About 650k tokens a run, so only when asked |
 | `skills/expert-panel/` | runs an adversarial expert panel on a decision: frame, brainstorm, independent opinions, cross-examination, fact check, disagreement map, synthesis, cut. Full or light run by stakes. Inline in chat |
 | `skills/composio-google/` | how to read Matt's venture and personal Gmail and Drive through Composio: account aliases, always name the account (the default Gmail account is the day-job inbox), read-only, Drive read steps |
 | `skills/sick-day/` | "Quickly, <name> is home sick": emails the aftercare address from the personal Gmail through Composio, and holds a placeholder for reporting the absence to the school. Names and addresses come from `SICKDAY_*` environment variables in the cloud environment, never from this public repo |
@@ -97,7 +98,7 @@ exit 0
 `~/.claude/skills/` once:
 
 ```bat
-for %s in (personal-voice de-slop document-review expert-panel composio-google sick-day) do mklink /J "%USERPROFILE%\.claude\skills\%s" "C:\Users\mjshu\Dev\AI_OS\personal\skills\%s"
+for %s in (personal-voice de-slop document-review expert-panel reader-sim composio-google sick-day) do mklink /J "%USERPROFILE%\.claude\skills\%s" "C:\Users\mjshu\Dev\AI_OS\personal\skills\%s"
 ```
 
 Then, once, from the clone (Windows `cmd`). Check first that the old

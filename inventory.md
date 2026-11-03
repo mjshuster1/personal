@@ -1,6 +1,6 @@
 # Skills and agents inventory
 
-Updated: 2026-10-27
+Updated: 2026-11-03
 Page: https://claude.ai/artifact/1L6onUFELu2jmU1F3ReLzT
 
 Source of truth for the page. Build it with `node inventory-page.js` and republish to the URL above.
@@ -13,6 +13,7 @@ Edited in the personal repo, under skills/. Installed into every session by the 
 - personal-voice | Your stance, tone, sentence rules, email openers and banned words. Loaded before drafting anything written as you.
 - de-slop | Rewrites text to strip AI tells and match your voice, plus the company voice file when the repo has one.
 - document-review | Reviews a document in four passes, in order: substance, slop, bloat, clarity.
+- reader-sim | Simulates busy readers getting an email for the first time and scores how much lands: phone inbox, one screen at a time, time budget, interruptions, memory quiz. Costly, so only when asked. | about 650k tokens a run
 - expert-panel | Adversarial expert panel on a decision: independent opinions, cross-examination, fact check, disagreement map. Runs inline in chat.
 - composio-google | How to read your venture and personal Gmail and Drive through Composio: account aliases, always name the account (the default Gmail account is the day-job inbox), read-only.
 - sick-day | Say a daughter is home sick and it emails the aftercare address from your personal Gmail; the school report is a placeholder until the Bowen form link is found.
