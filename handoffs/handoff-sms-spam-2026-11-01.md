@@ -3,7 +3,20 @@
 Written 2026-11-01 ET. Not a weekly report; kept here only so a fresh chat can
 read it.
 
-## Update 3:20 PM ET, Nov 1 (read this first)
+## Update 10:45 PM ET, Nov 2 (read this first)
+
+- DEPLOYED. claude.ai connector "Texts" at
+  `https://openmessage-connector.mjshuster1.workers.dev/mcp`, signed in with
+  Matt's Gmail; shows the 9 read tools, no send. `get_status` from a cloud
+  session returned Google connected, phone responding (about 35 hours after
+  pairing, so the durability check passed).
+- The Mac must run `./openmessage serve --web --mcp-sse --mcp-read-only`.
+  Plain `serve` has no `/mcp`. OpenMessage does not auto-start after a
+  reboot; cloudflared does (launch daemon).
+- Still open: manual block test, spam log review around Nov 4, auto-start
+  for OpenMessage, delete `~/google-cookies.txt` if not done.
+
+## Update 3:20 PM ET, Nov 1
 
 - Matt dropped the 24-hour gate: deploy the Worker now; the Nov 2 check is a
   health check, not a gate.
