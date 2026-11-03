@@ -39,8 +39,8 @@ chat replies, not just files.
 - When a session crosses midnight ET or Matt has reversed a design twice, say
   so and offer a handoff once.
 - Handoff files: they go in the repo the session is in, not in `personal`. Use
-  that repo's existing handoff convention if it has one (consultant-workspace
-  keeps `HANDOFF-<date>-<topic>.md` at its root), even over the hook's path;
+  that repo's documented handoff convention if it has one (in its AGENTS.md,
+  CLAUDE.md or README), even over the hook's path;
   otherwise use `handoffs/` at the repo root, as the hook says. If that
   folder is new, add one line for it to the repo's README map in the same
   commit.
