@@ -36,7 +36,7 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 | `inventory-page.js`, `inventory-page.template.html` | `node inventory-page.js` builds the page from `inventory.md` and prints any skill or agent file on disk that `inventory.md` doesn't list. Republish the output to that URL |
 
 Company voice stays with the company: Cuepri's `voice.md` and
-`voice-samples/` live in `gtm-vault/vault/Cuepri/`, and layer on top of
+`voice-samples/` live in `cuepri-workspace/vault/Cuepri/`, and layer on top of
 `personal-voice`. The two voice skills (`personal-voice`, `de-slop`) name
 no company, product, customer or industry, so they hold anywhere. Other
 skills, like `composio-google`, may name tools, account aliases and Matt's
