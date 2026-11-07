@@ -1,6 +1,6 @@
 # Skills and agents inventory
 
-Updated: 2026-11-03
+Updated: 2026-11-07
 Page: https://claude.ai/artifact/1L6onUFELu2jmU1F3ReLzT
 
 Source of truth for the page. Build it with `node inventory-page.js` and republish to the URL above.
@@ -19,10 +19,30 @@ Edited in the personal repo, under skills/. Installed into every session by the 
 - sick-day | Say a daughter is home sick and it emails the aftercare address from your personal Gmail; the school report is a placeholder until the Bowen form link is found.
 - ai-research-digest | Weekly routine only. Method, scoring rules and source list for the AI research report. Not for normal sessions. | routine only
 
-## Your skill in the Cuepri workspace [yours]
-Lives in cuepri-workspace/.claude/skills/. Loads only in sessions that start in that repo.
+## Your skills in the Cuepri workspace [yours]
+Live in cuepri-workspace/.claude/skills/. Load only in sessions that start in that repo.
 
+- cuepri-vault | Cuepri operating context: vault structure, save locations, voice, ICP and PHI rules, and routing to the other Cuepri skills.
 - cuepri-design | Cuepri design system: tokens, type, components, UI kits and brand assets for interfaces and mocks.
+- call-sources | Decides where call content comes from: Fireflies transcript first, HubSpot meeting summary second, labeled when summary-derived.
+- call-update | Short team-facing recap of a call: bottom line, product feedback, next steps.
+- meeting-followup | Follow-up email to someone you just met with, in your voice, from the transcript. A recap, not a pitch.
+- outreach-draft | Cold and first-touch emails to behavioral health operators you haven't met.
+- deal-coach | Keeps open deals from stalling: post-call debrief, pre-call card, and a daily pass over every open deal on one rubric.
+- verification-check | Retrieval discipline: fetch full records before concluding, and treat an empty search as not found, not as proof of absence.
+- fireflies-timestamps | Formats Fireflies links so they jump to the right moment in the recording.
+- icp-tiering | Scores and tiers treatment center accounts against the ICP rubric.
+- trigger-watch | Daily signal scan across Tier 1 to 3 accounts to pick the ones to work today. | weekday routine
+- daily-run | Assembles the daily digest from Fireflies, Gmail, Slack, HubSpot, Calendar and texts, and logs decision records. | daily routine
+- rollout-sync | For each site in rollout, reads new calls and email, suggests tracker ticks, lists follow-ups owed, and rewrites the site's status. | routine
+- fireflies-manual-sync | Logs manual Fireflies recordings (phone calls, debriefs, uploads) to HubSpot against the right contact, company and deal. | routine
+- hubspot-company-sync | Keeps each contact's Company Name matched to its primary associated company. | daily routine
+- voice-refresh | Harvests your recent sent email and call language and proposes voice-file changes without applying them. | routine, disabled
+- champion-graph | Your warm-intro graph through industry champions: who knows whom, best path into an account, intro requests.
+- champion-crossref | Cross-references champion connections against the ICP center master into the deduped review list and gap analysis.
+- champion-feed-watch | Weekly scan of champions' LinkedIn activity that mines qualifying posts into a candidates report. | weekly
+- champion-post-mine | Pulls ICP candidates from a LinkedIn post a champion engaged with, scores them, and adds them to the ledger.
+- ideas-engine | Generates genuinely different options for copy, names, positioning, concepts or pricing when a draft feels flat.
 
 ## Your agents in the consultant workspace [yours]
 Live in consultant-workspace/.claude/agents/. They run only in that repo. All are read-only. The review panel rules in its AGENTS.md say when each is required.
@@ -50,7 +70,7 @@ Ship with Claude Code. Available in every session.
 - statusline-setup | Configures the Claude Code status line.
 
 ## Slack plugin skills
-slack-by-salesforce. Needs the Slack connector authorized; it was not authorized in the 2026-10-26 session.
+slack-by-salesforce. Needs the Slack connector authorized; it was not authorized in the 2026‑10‑26 session.
 
 - slack-by-salesforce:channel-digest | Digest of recent activity across several channels.
 - slack-by-salesforce:draft-announcement | Drafts a formatted announcement and saves it as a draft.
