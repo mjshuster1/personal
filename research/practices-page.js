@@ -5,7 +5,8 @@
 //   - status | title | detail | where | source | more | link | how
 // The last three are optional: more (why it matters, shown on expand), link (source URL) and
 // how (two to five steps separated by " ;; ", shown as a numbered list on expand).
-// status is one of: pending, in force, noted, rejected. Exits non-zero on a bad line.
+// status is one of: pending, in force, noted, rejected. pending and noted entries need 2 to 5
+// how steps. Exits non-zero on a bad line.
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -23,6 +24,11 @@ fs.readFileSync(path.join(dir, 'PRACTICES.md'), 'utf8').split('\n').forEach((lin
   const f = line.slice(2).split(' | ').map(s => s.trim());
   if (f.length < 5 || f.length > 8 || !STATUS[f[0]] || !raised) {
     console.error(`PRACTICES.md line ${n + 1} is not "- status | title | detail | where | source [| more | link | how]" under a dated heading: ${line.slice(0, 80)}`);
+    process.exit(1);
+  }
+  const steps = f[7] ? f[7].split(' ;; ').filter(Boolean).length : 0;
+  if ((f[0] === 'pending' || f[0] === 'noted') && (steps < 2 || steps > 5)) {
+    console.error(`PRACTICES.md line ${n + 1} is ${f[0]} and needs 2 to 5 how steps separated by " ;; " (has ${steps}): ${f[1].slice(0, 80)}`);
     process.exit(1);
   }
   items.push({ s: STATUS[f[0]], t: f[1], d: f[2], w: f[3], src: f[4], more: f[5] || '', link: f[6] || '', how: f[7] ? f[7].split(' ;; ') : [], date: raised });
