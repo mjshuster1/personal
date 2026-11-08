@@ -6,6 +6,7 @@
 // Also compares the [yours] groups with the skill and agent files on disk and prints any
 // difference. Sibling repos are read from ../consultant-workspace and ../cuepri-workspace
 // when they are checked out next to this one; a missing one is skipped with a note.
+// Also prints any skill folder or agent file in this repo that has no row in README.md's map.
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -53,6 +54,16 @@ const missing = [...found].filter(x => !listed.has(x));
 const gone = [...mine].filter(x => !found.has(x));
 missing.forEach(x => console.log(`on disk, not in inventory.md: ${x}`));
 gone.forEach(x => console.log(`in a [yours] group, not found on disk (or its repo is not checked out): ${x}`));
+
+// README map: every skill folder and agent file in this repo needs a row in README.md's tables.
+const readme = fs.readFileSync(path.join(dir, 'README.md'), 'utf8').split('\n').filter(l => l.startsWith('| `'));
+const mapped = new Set(readme.map(l => (l.match(/^\| `((?:skills|agents)\/[^`]+?)\/?`/) || [])[1]).filter(Boolean));
+const own = [
+  ...fs.readdirSync(path.join(dir, 'skills'), { withFileTypes: true }).filter(e => e.isDirectory()).map(e => `skills/${e.name}`),
+  ...fs.readdirSync(path.join(dir, 'agents')).filter(f => f.endsWith('.md')).map(f => `agents/${f}`),
+];
+own.filter(x => !mapped.has(x)).forEach(x => console.log(`on disk, no row in README.md: ${x}`));
+[...mapped].filter(x => !own.includes(x)).forEach(x => console.log(`row in README.md, not on disk: ${x}`));
 
 const html = fs.readFileSync(path.join(dir, 'inventory-page.template.html'), 'utf8')
   .replace('/*GROUPS*/[]', () => JSON.stringify(groups))
