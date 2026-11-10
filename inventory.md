@@ -54,9 +54,9 @@ Live in cuepri-workspace/.claude/skills/. Load only in sessions that start in th
   - Use when: Building any Cuepri page, mock, deck visual or UI.
   - Try: "Mock up the family check-in screen in the Cuepri style."
   - Covers: Domine, DM Sans and JetBrains Mono, warm neutrals, green #0C6D36 as the one accent, square corners, no italics.
-- call-sources | Decides where call content comes from: Fireflies transcript first, HubSpot meeting summary second, labeled when summary-derived.
+- call-sources | Decides where call content comes from: Gemini notes in Drive first, Fireflies for older calls, then your debriefs, labeled when not a speaker-labeled transcript.
   - Use when: Any recap, follow-up or digest needs what was said on a call. Other skills call it.
-  - Order: Fireflies transcript first, HubSpot meeting summary second. Output built from a summary is labeled that way.
+  - Order: speaker-labeled transcript (Gemini, or Fireflies before Oct 23), in-person transcript, Gemini summary only, your debrief (solo Gemini session or HubSpot). Anything below the first is labeled.
 - call-update | Short team-facing recap of a call: bottom line, product feedback, next steps.
   - Use when: You want a call written up for the team.
   - Try: "Write up the Creekside call for the team."
@@ -87,18 +87,18 @@ Live in cuepri-workspace/.claude/skills/. Load only in sessions that start in th
   - Use when: Runs every weekday as Cuepri Trigger Watch. Also on request.
   - Try: "What should I work today?"
   - Returns: The top Tier 1 to 3 accounts to act on, with the signal behind each.
-- daily-run | Assembles the daily digest from Fireflies, Gmail, Slack, HubSpot, Calendar and texts, and logs decision records. | daily routine
+- daily-run | Assembles the daily digest from calls (Gemini notes), Gmail, Slack, HubSpot, Calendar and texts, and logs decision records. | daily routine
   - Use when: Runs daily as Cuepri Daily Run. Also on request.
   - Try: "Run today's digest."
-  - Returns: One digest in vault/Cuepri/daily/ from Fireflies, Gmail, Slack, HubSpot, Calendar and texts, plus decision records. PHI gate on.
+  - Returns: One digest in vault/Cuepri/daily/ from calls, Gmail, Slack, HubSpot, Calendar and texts, plus decision records. PHI gate on.
 - rollout-sync | For each site in rollout, reads new calls and email, suggests tracker ticks, lists follow-ups owed, and rewrites the site's status. | routine
   - Use when: Runs as the Cuepri Rollout Sync routine. Also on request.
   - Try: "Sync the tracker."
   - Returns: Suggested ticks (never direct ticks), follow-ups owed both ways, and a fresh status per site on the rollout tracker. Operational only, nothing about a client.
-- fireflies-manual-sync | Logs manual Fireflies recordings (phone calls, debriefs, uploads) to HubSpot against the right contact, company and deal. | routine
-  - Use when: Runs as the Fireflies Manual Sync routine. Also on request.
-  - Try: "Sync my Fireflies recordings."
-  - Why: Fireflies' own HubSpot sync skips recordings where you are the only participant.
+- call-notes-sync | Logs your external calls and solo debriefs from Gemini notes to HubSpot against the right contact, company and deal. Shadow mode for now: proposes notes, writes none. | routine
+  - Use when: Runs as the Cuepri Call Notes Sync routine. Also on request.
+  - Try: "Log my Origins debrief." / "Turn on call note writes."
+  - Why: With Fireflies gone, nothing else puts calls into HubSpot.
 - hubspot-company-sync | Keeps each contact's Company Name matched to its primary associated company. | daily routine
   - Use when: Runs daily as the HubSpot Company Name Sync routine.
   - Does: Sets each contact's Company Name to match its primary associated company.
