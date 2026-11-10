@@ -47,8 +47,21 @@ chat replies, not just files.
 - A session that starts from a handoff file deletes it once the work is picked
   up, and commits the delete.
 - A handoff means a handoff file (goal, done, left, decisions, what failed)
-  that Matt can review, then a fresh chat pointed at it. Don't use /compact
-  as a cost cut: it adds a full read and can drop early instructions.
+  and a fresh session pointed at it, which the session starts itself with
+  `create_session`; Matt doesn't paste a prompt. Work that needs more than
+  one session gets a lead session. The lead keeps the plan in
+  `handoffs/lead-<topic>.md` and does none of the work. For each step it
+  posts the brief (goal, steps, what done means), then starts a child with
+  that brief, on the model and effort the step needs (Token cost). Children
+  that touch the same logic run one at a time. A child ends by sending the
+  lead a report in the handoff fields with `send_message`. The lead updates
+  and commits the plan, then starts the next child. A child stops before a
+  risky change or deploy and asks Matt in its own session; a yes passed
+  along by the lead doesn't count. Post timestamped lines when each child
+  starts and reports, as for background agents; if a child is quiet well
+  past its expected time, tell Matt. When the lead's own context is large,
+  it starts its successor pointed at the plan file. Don't use /compact as a
+  cost cut: it adds a full read and can drop early instructions.
 - Pick the model before the job and keep it. Switching models mid-chat
   re-reads the whole chat at full price.
 
