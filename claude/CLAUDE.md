@@ -55,7 +55,9 @@ chat replies, not just files.
   that brief, on the model and effort the step needs (Token cost). Children
   that touch the same logic run one at a time. A child ends by sending the
   lead a report in the handoff fields with `send_message`. The lead updates
-  and commits the plan, then starts the next child. A child stops before a
+  and commits the plan, then starts the next child. Once a child's report
+  is in, its work is pushed, and nothing in it waits on Matt, the lead
+  archives it with `archive_session`. A child stops before a
   risky change or deploy and asks Matt in its own session; a yes passed
   along by the lead doesn't count. Post timestamped lines when each child
   starts and reports, as for background agents; if a child is quiet well
