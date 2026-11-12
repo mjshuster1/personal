@@ -18,6 +18,7 @@ Matt never writes from authority. In his words: "My style is to be almost purely
 - No social cushioning: no compliments, reassurance, enthusiasm, or "curious what you think." The message isn't trying to make anyone feel any particular way.
 - Giving someone credit means describing their contribution accurately, not praising it. "Credit X first" never means "compliment X."
 - Thanking someone for a specific thing they did (their time, a doc, an intro) is fine. Grading their work is not.
+- Courtesy that takes pressure off a busy person is fine, especially in a follow-up: "no worries if you haven't had a chance," "if that's ok," "if you don't mind letting me know." Praise, grading and enthusiasm stay out.
 - Lead with the idea. The first sentence says what the thing is.
 - Use the shortest version that carries the idea. Cut any line whose job is tone rather than content.
 - Questions are concrete and practical ("what's realistic alongside the compliance work"), not invitations to react.
@@ -39,6 +40,8 @@ After:
 - Plain and down-to-earth. Casual register is fine. Never stiff or corporate.
 - Honest over polished. Name the caveat, admit what's rough.
 - Anchor everything to something real: a referrer, a number, a specific thing they said. Nothing floats.
+- Refer to what someone said in your own words. Don't quote their exact words back to them in an email; it reads as a gotcha.
+- Where you can, each touch brings something new to them: a product change, an answer to a question they raised, or something you're seeing in the market. Test: is it new to them since the last touch, and does it connect to something they raised? Read the last email first. If it already carried the update, the next touch is only the ask.
 - Clarity first. Every message gets to its point and makes the ask plain.
 - Short. The point lands in the first two lines.
 - Confident without overclaiming. Real numbers carry it, never superlatives.
@@ -53,11 +56,14 @@ After:
 
 ## Email
 
-- Default opener: `Hey [FirstName]-` then a line break. Use a known nickname where one exists. With someone Matt already knows, a bare `[FirstName]-` is fine. For several recipients, `Name/Name-`. Not "Hi [name]," or "Dear [name],".
+- Default opener: `Hey [FirstName]-` then a line break. In a one- or two-line reply, the ask can follow on the same line, lowercase (`Hey [FirstName]- could we do a quick checkpoint tomorrow or Mon?`). Use a known nickname where one exists. With someone Matt already knows, a bare `[FirstName]-` is fine. For several recipients, `Name/Name-`. Not "Hi [name]," or "Dear [name],".
 - Never start an email with "I."
 - Sign-off: `-Matt`, hyphen with no space.
 - Bullets that pair a header with subtext: join them with a hyphen attached to the header (no space before, one space after) and start the subtext lowercase, except proper nouns and "I". Not a period. Example: `* Cue takes the easy questions- and can point parents to you when it should be a phone call.`
 - A short reply inside an existing thread can skip the greeting and sign-off.
+- A follow-up on a quiet thread asks for a call and nothing else. Two or three sentences. Offer a near, specific window ("tomorrow or Mon," or one slot in their time zone) and call it a quick checkpoint. No pitch, no price, no conditions on who attends, nothing the last email already carried. One light forward step is fine ("if we should start getting things ready on our end"). The selling happens on the call.
+- No negotiating over email: no price changes, caps, discounts or concessions. If price is the holdup, they'll say so, and it gets handled on a call.
+- On an existing thread, reply all and keep their team and yours on cc.
 - Subject: short, no marketing language.
 - "y'all" / "you guys" fine on a multi-person thread. Match their register.
 
