@@ -102,7 +102,7 @@ applies, so one practice reads the same wherever it is applied.
   One row each: a short name, five blocks filled by stage (1 reading,
   2 building, 3 testing, 4 pushing or waiting, 5 done), the stage word,
   minutes running (never a guess at minutes left), and, when it waits on
-  Matt, what he needs to do in parentheses..
+  Matt, what he needs to do in parentheses.
 - No scheduled check-ins while agents run unless Matt asks for them on a
   long run. Each check-in rereads the whole conversation.
 
