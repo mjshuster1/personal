@@ -62,7 +62,11 @@ chat replies, not just files.
   along by the lead doesn't count. Post timestamped lines when each child
   starts and reports, as for background agents; if a child is quiet well
   past its expected time, tell Matt. When the lead's own context is large,
-  it starts its successor pointed at the plan file. Don't use /compact as a
+  it starts its successor pointed at the plan file. Once the successor has
+  deleted the handoff file and taken over, it archives the old lead with
+  `archive_session` (the old lead has nothing left to do, and each
+  `create_session` files the new session under the one that started it,
+  so live old leads pile up as a nested chain). Don't use /compact as a
   cost cut: it adds a full read and can drop early instructions.
 - Pick the model before the job and keep it. Switching models mid-chat
   re-reads the whole chat at full price.
@@ -82,9 +86,23 @@ applies, so one practice reads the same wherever it is applied.
   how many, and what each one is doing.
 - As each one finishes, post one timestamped line: which one, how many are
   back out of the total, and what is still running.
-- Every reply sent while any background agent is still running, for any
-  reason, includes a timestamped status line: what's still running and for
-  how long. Never end a turn with agents running and no status line.
+- Every reply sent while any background agent or child session is still
+  running, for any reason (Matt's message, an agent finishing, a child's
+  report, a notification), ends with a status block in exactly this shape,
+  in a code block so it lines up. Never end a turn with anything running
+  and no status block.
+
+  ```
+  Status (11:15 AM ET):
+  Deck pay 2x10    ▓░░░░  reading           0 min
+  Growth view      ▓▓▓░░  testing          12 min
+  Merge stage 2    ▓▓▓▓░  waiting on you   89 min  (approve the copy.js change in its own session)
+  ```
+
+  One row each: a short name, five blocks filled by stage (1 reading,
+  2 building, 3 testing, 4 pushing or waiting, 5 done), the stage word,
+  minutes running (never a guess at minutes left), and, when it waits on
+  Matt, what he needs to do in parentheses..
 - No scheduled check-ins while agents run unless Matt asks for them on a
   long run. Each check-in rereads the whole conversation.
 
