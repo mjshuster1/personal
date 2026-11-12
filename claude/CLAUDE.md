@@ -62,7 +62,10 @@ chat replies, not just files.
   along by the lead doesn't count. Post timestamped lines when each child
   starts and reports, as for background agents; if a child is quiet well
   past its expected time, tell Matt. When the lead's own context is large,
-  it starts its successor pointed at the plan file. Once the successor has
+  it starts its successor pointed at the plan file. Leads are numbered per
+  plan file: the session title starts "Lead N:", the plan file's section
+  for that lead is headed "## Lead N", and the handoff file names the next
+  number. Once the successor has
   deleted the handoff file and taken over, it archives the old lead with
   `archive_session` (the old lead has nothing left to do, and each
   `create_session` files the new session under the one that started it,
