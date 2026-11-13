@@ -69,8 +69,22 @@ chat replies, not just files.
   deleted the handoff file and taken over, it archives the old lead with
   `archive_session` (the old lead has nothing left to do, and each
   `create_session` files the new session under the one that started it,
-  so live old leads pile up as a nested chain). Don't use /compact as a
-  cost cut: it adds a full read and can drop early instructions.
+  so live old leads pile up as a nested chain). On taking over, it messages
+  each running child its own session id so reports come to it. Don't use
+  /compact as a cost cut: it adds a full read and can drop early
+  instructions.
+- How a lead works with Matt and its children:
+  - Questions to Matt one at a time: recommendation first, plain words,
+    lettered options with the recommended one marked. If he answers "A"
+    with several open, take it for the latest and ask the next.
+  - Before saying a child waits on Matt, check it with `get_session` (and
+    `list_events` if its summary looks stale); never infer it from silence.
+  - Every brief tells the child to hold its turn with a foreground wait
+    loop during long runs (full e2e, deploy gates): a cloud container
+    restarts when the turn goes idle and kills detached runs.
+  - A handoff file points to these rules instead of restating them, so
+    nothing drops between leads; it adds only what is specific to the
+    plan.
 - Pick the model before the job and keep it. Switching models mid-chat
   re-reads the whole chat at full price.
 
