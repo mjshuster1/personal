@@ -32,6 +32,15 @@ function rules() {
     : (cur.trim() ? cur.trimEnd() + '\n\n' : '') + block + '\n';
   fs.writeFileSync(dst, cur);
   log(`CLAUDE.md ${inPlace ? 'imports' : 'copied from'} ${fwd(src)}`);
+  // Git blob hash of the copied rules, so et-time.js can tell when main has
+  // moved on. In-place installs read the clone live and need no check.
+  const shaFile = path.join(home, 'hooks', 'personal', 'rules.sha');
+  if (inPlace) { fs.rmSync(shaFile, { force: true }); return; }
+  const buf = fs.readFileSync(src);
+  const sha = require('crypto').createHash('sha1')
+    .update(Buffer.concat([Buffer.from(`blob ${buf.length}\0`), buf])).digest('hex');
+  fs.mkdirSync(path.dirname(shaFile), { recursive: true });
+  fs.writeFileSync(shaFile, sha + '\n');
 }
 
 function hooks() {

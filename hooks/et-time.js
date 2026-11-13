@@ -10,6 +10,10 @@
 // into this script; a session of 400k+ tokens should print a third line.
 // A Stop-hook "Finished" line was tried 2026-10-04 and dropped: the Claude app
 // didn't display it.
+// Once per session it also compares the rules this container loaded
+// (rules.sha, written by install.js) with claude/CLAUDE.md on main, and if they
+// differ tells Claude to refresh (see rulesNote). Cloud containers are reused,
+// so the setup script's copy can be days old.
 // Single file on purpose: install.js copies only this file into cloud sessions.
 const fs = require('fs');
 const os = require('os');
@@ -88,6 +92,23 @@ function contextNote(input, nowMs) {
   return line;
 }
 
+// Once per session: '' if the loaded rules match main, the check can't run, or
+// it already ran. rules.sha is absent on in-place installs, which read live.
+const RULES_URL = 'https://api.github.com/repos/mjshuster1/personal/contents/claude/CLAUDE.md?ref=main';
+const REFRESH = `d=$(mktemp -d) && curl -sL -m 60 -H 'Accept: application/vnd.github+json' https://api.github.com/repos/mjshuster1/personal/tarball/main | tar -xz -C "$d" && node "$d"/mjshuster1-personal-*/install.js && cp -r "$d"/mjshuster1-personal-*/skills/. ~/.claude/skills/ && rm -rf "$d"`;
+function rulesNote(input) {
+  let have = '';
+  try { have = fs.readFileSync(path.join(__dirname, 'rules.sha'), 'utf8').trim(); } catch (e) { return ''; }
+  const sp = statePath((input && input.session_id) || 'nosession').replace('ctxwatch', 'rulescheck');
+  if (fs.existsSync(sp)) return '';
+  try { fs.writeFileSync(sp, '1'); } catch (e) {}
+  const r = require('child_process').spawnSync('curl',
+    ['-s', '-m', '4', '-H', 'Accept: application/vnd.github+json', RULES_URL], { encoding: 'utf8', timeout: 5000 });
+  let want = ''; try { want = JSON.parse(r.stdout).sha || ''; } catch (e) {}
+  if (!want || want === have) return '';
+  return `Your session rules are out of date: claude/CLAUDE.md on main changed after this container loaded it. Before other work, run this to refresh: ${REFRESH} Then read ~/.claude/CLAUDE.md and follow it over the rules loaded at session start, and tell Matt in one line that you refreshed.`;
+}
+
 try {
   const now = new Date();
   const t = now.toLocaleTimeString('en-US', {
@@ -97,12 +118,11 @@ try {
   const d = now.toLocaleDateString('en-US', {
     timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
   });
-  let extra = '';
-  try {
-    let input = null;
-    if (!process.stdin.isTTY) input = JSON.parse(fs.readFileSync(0, 'utf8'));
-    extra = contextNote(input, now.getTime());
-  } catch (e) {}
+  let input = null, extra = '';
+  try { if (!process.stdin.isTTY) input = JSON.parse(fs.readFileSync(0, 'utf8')); } catch (e) {}
+  for (const note of [() => contextNote(input, now.getTime()), () => rulesNote(input)]) {
+    try { const n = note(); if (n) extra = extra ? extra + '\n' + n : n; } catch (e) {}
+  }
   process.stdout.write(JSON.stringify({
     hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: `Current time: ${t}\nToday (ET): ${d}` + (extra ? '\n' + extra : '') },
   }));

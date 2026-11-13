@@ -47,10 +47,14 @@ chat replies, not just files.
 - A session that starts from a handoff file deletes it once the work is picked
   up, and commits the delete.
 - A handoff means a handoff file (goal, done, left, decisions, what failed)
-  and a fresh session pointed at it, which the session starts itself with
-  `create_session`; Matt doesn't paste a prompt. Work that needs more than
-  one session gets a lead session. The lead keeps the plan in
-  `handoffs/lead-<topic>.md` and does none of the work. For each step it
+  and a Kickstart prompt that Matt pastes into a new top-level session. A
+  session never starts its own successor with `create_session`: each one
+  files the new session under the one that started it, and a chain of
+  handoffs hit a limit at 8 on Nov 13 (observed, not documented). `create_session` is only for a lead starting its children.
+  The Kickstart prompt names the title the new session should get.
+- Work that needs more than one session gets a lead session. The lead keeps
+  the plan in `handoffs/lead-<topic>.md` (or in the repo's documented
+  handoff folder, if it has one) and does none of the work. For each step it
   posts the brief (goal, steps, what done means), then starts a child with
   that brief, on the model and effort the step needs (Token cost). Children
   that touch the same logic run one at a time. A child ends by sending the
@@ -62,17 +66,18 @@ chat replies, not just files.
   along by the lead doesn't count. Post timestamped lines when each child
   starts and reports, as for background agents; if a child is quiet well
   past its expected time, tell Matt. When the lead's own context is large,
-  it starts its successor pointed at the plan file. Leads are numbered per
-  plan file: the session title starts "Lead N:", the plan file's section
-  for that lead is headed "## Lead N", and the handoff file names the next
-  number. Once the successor has
-  deleted the handoff file and taken over, it archives the old lead with
-  `archive_session` (the old lead has nothing left to do, and each
-  `create_session` files the new session under the one that started it,
-  so live old leads pile up as a nested chain). On taking over, it messages
-  each running child its own session id so reports come to it. Don't use
-  /compact as a cost cut: it adds a full read and can drop early
-  instructions.
+  it writes its handoff into the plan file, listing each running child's
+  session id, and pastes the Kickstart prompt for the next lead. Once the
+  successor has taken over, it archives the old lead with
+  `archive_session` and messages each running child its own session id so
+  reports come to it. Don't use /compact as a cost cut: it adds a full
+  read and can drop early instructions.
+- Session names, the same in every repo:
+  - Lead: `Lead N: <topic>`, where `<topic>` matches the plan file name
+    and N counts leads per plan file. The plan file's section for that
+    lead is headed `## Lead N`.
+  - Child: `<topic> N.M: <step>`, M counting the children of Lead N. The
+    status block row for that child uses `N.M <step>`.
 - How a lead works with Matt and its children:
   - Questions to Matt one at a time: recommendation first, plain words,
     lettered options with the recommended one marked. If he answers "A"
@@ -111,12 +116,12 @@ applies, so one practice reads the same wherever it is applied.
 
   ```
   Status (11:15 AM ET):
-  Deck pay 2x10    ▓░░░░  reading           0 min
-  Growth view      ▓▓▓░░  testing          12 min
-  Merge stage 2    ▓▓▓▓░  waiting on you   89 min  (approve the copy.js change in its own session)
+  2.3 Deck pay     ▓░░░░  reading           0 min
+  2.2 Growth view  ▓▓▓░░  testing          12 min
+  2.1 Merge stage  ▓▓▓▓░  waiting on you   89 min  (approve the copy.js change in its own session)
   ```
 
-  One row each: a short name, five blocks filled by stage (1 reading,
+  One row each: a short name (`N.M <step>` for a child session), five blocks filled by stage (1 reading,
   2 building, 3 testing, 4 pushing or waiting, 5 done), the stage word,
   minutes running (never a guess at minutes left), and, when it waits on
   Matt, what he needs to do in parentheses.
