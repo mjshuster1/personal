@@ -234,6 +234,13 @@ server refuses) is not a policy denial: try WebFetch, then `r.jina.ai`,
 before reporting it.
 `curl -sS "$HTTPS_PROXY/__agentproxy/status"` lists recent denials.
 
+A new cloud environment (for example one split off the Default for a
+repo's keys) gets two things in the same step, or its sessions run
+without these rules: the Default's setup script, which installs this
+repo, and a `request_credential` for `api.github.com` with read access to
+`mjshuster1/personal`. The tutoring-apps environment, created Nov 13
+without either, ran on no rules.
+
 ## Dead ends
 
 When a source comes back empty, blocked, or refused, try the other routes
