@@ -58,6 +58,12 @@ chat replies, not just files.
   the new session's first action is to set it on itself with
   `set_session_title` (a session Matt starts gets an auto title from the
   prompt otherwise).
+- Every Kickstart prompt and child brief opens with this line, word for
+  word: "First, check that ~/.claude/CLAUDE.md contains 'Session names'.
+  If it doesn't, Matt's rules aren't installed in this environment: tell
+  Matt in one line before any other work." A session in an environment
+  without the setup script never sees these rules, so the check has to
+  travel in the prompt.
 - Work that needs more than one session gets a lead session. The lead keeps
   the plan in `handoffs/lead-<topic>.md` (or in the repo's documented
   handoff folder, if it has one) and does none of the work. For each step it
@@ -135,7 +141,9 @@ applies, so one practice reads the same wherever it is applied.
   One row each: a short name (`N.M <step>` for a child session), five blocks filled by stage (1 reading,
   2 building, 3 testing, 4 pushing or waiting, 5 done), the stage word,
   minutes running (never a guess at minutes left), and, when it waits on
-  Matt, what he needs to do in parentheses.
+  Matt, what he needs to do in parentheses. Put the current ET time in
+  the header, and drop a finished row after the reply that reports it
+  done.
 - No scheduled check-ins while agents run unless Matt asks for them on a
   long run. Each check-in rereads the whole conversation.
 
