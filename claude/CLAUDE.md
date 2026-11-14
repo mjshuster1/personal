@@ -36,8 +36,11 @@ chat replies, not just files.
   it). Don't ask first: the cache is warm now and cold
   tomorrow. The hook repeats its line only after substantial growth;
   overwrite the same file then.
-- When a session crosses midnight ET or Matt has reversed a design twice, say
-  so and offer a handoff once.
+- After 10 PM ET, once per session, at the end of a finished task, paste a
+  Kickstart prompt in a copy-paste block so tomorrow starts fresh instead
+  of reheating a cold chat; write a handoff file too only if work is left
+  unfinished. When Matt has reversed a design twice, say so and offer a
+  handoff once.
 - Handoff files: they go in the repo the session is in, not in `personal`. Use
   that repo's documented handoff convention if it has one (in its AGENTS.md,
   CLAUDE.md or README), even over the hook's path;
@@ -51,12 +54,16 @@ chat replies, not just files.
   session never starts its own successor with `create_session`: each one
   files the new session under the one that started it, and a chain of
   handoffs hit a limit at 8 on Nov 13 (observed, not documented). `create_session` is only for a lead starting its children.
-  The Kickstart prompt names the title the new session should get.
+  The Kickstart prompt names the title the new session should get, and
+  the new session's first action is to set it on itself with
+  `set_session_title` (a session Matt starts gets an auto title from the
+  prompt otherwise).
 - Work that needs more than one session gets a lead session. The lead keeps
   the plan in `handoffs/lead-<topic>.md` (or in the repo's documented
   handoff folder, if it has one) and does none of the work. For each step it
   posts the brief (goal, steps, what done means), then starts a child with
-  that brief, on the model and effort the step needs (Token cost). Children
+  that brief, on the model and effort the step needs (Token cost), passing
+  the child's title to `create_session` as `title`. Children
   that touch the same logic run one at a time. A child ends by sending the
   lead a report in the handoff fields with `send_message`. The lead updates
   and commits the plan, then starts the next child. Once a child's report
