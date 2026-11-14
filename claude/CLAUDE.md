@@ -76,8 +76,12 @@ chat replies, not just files.
   - Lead: `Lead N: <topic>`, where `<topic>` matches the plan file name
     and N counts leads per plan file. The plan file's section for that
     lead is headed `## Lead N`.
-  - Child: `<topic> N.M: <step>`, M counting the children of Lead N. The
+  - Child: `Child N.M: <step>`, M counting the children of Lead N. The
     status block row for that child uses `N.M <step>`.
+  - Exactly these forms: the label, a space, the numbers, a colon, a
+    space, then the name. Not "(lead 2)", "Lead 2 -" or "Buyer sim step
+    11:". Child titles leave the topic out because children are filed
+    under their lead.
 - How a lead works with Matt and its children:
   - Questions to Matt one at a time: recommendation first, plain words,
     lettered options with the recommended one marked. If he answers "A"

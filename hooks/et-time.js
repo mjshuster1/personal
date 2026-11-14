@@ -12,7 +12,9 @@
 // didn't display it.
 // Once per session it also compares the rules this container loaded
 // (rules.sha, written by install.js) with claude/CLAUDE.md on main, and if they
-// differ tells Claude to refresh (see rulesNote). Cloud containers are reused,
+// differ tells Claude to read the current rules from main (see rulesNote).
+// Reading, not running the installer: a session's permission check refused
+// the installer on Nov 13. Cloud containers are reused,
 // so the setup script's copy can be days old.
 // Single file on purpose: install.js copies only this file into cloud sessions.
 const fs = require('fs');
@@ -95,7 +97,6 @@ function contextNote(input, nowMs) {
 // Once per session: '' if the loaded rules match main, the check can't run, or
 // it already ran. rules.sha is absent on in-place installs, which read live.
 const RULES_URL = 'https://api.github.com/repos/mjshuster1/personal/contents/claude/CLAUDE.md?ref=main';
-const REFRESH = `d=$(mktemp -d) && curl -sL -m 60 -H 'Accept: application/vnd.github+json' https://api.github.com/repos/mjshuster1/personal/tarball/main | tar -xz -C "$d" && node "$d"/mjshuster1-personal-*/install.js && cp -r "$d"/mjshuster1-personal-*/skills/. ~/.claude/skills/ && rm -rf "$d"`;
 function rulesNote(input) {
   let have = '';
   try { have = fs.readFileSync(path.join(__dirname, 'rules.sha'), 'utf8').trim(); } catch (e) { return ''; }
@@ -106,7 +107,7 @@ function rulesNote(input) {
     ['-s', '-m', '4', '-H', 'Accept: application/vnd.github+json', RULES_URL], { encoding: 'utf8', timeout: 5000 });
   let want = ''; try { want = JSON.parse(r.stdout).sha || ''; } catch (e) {}
   if (!want || want === have) return '';
-  return `Your session rules are out of date: claude/CLAUDE.md on main changed after this container loaded it. Before other work, run this to refresh: ${REFRESH} Then read ~/.claude/CLAUDE.md and follow it over the rules loaded at session start, and tell Matt in one line that you refreshed.`;
+  return `Your session rules are out of date: claude/CLAUDE.md on main changed after this container loaded it. Before other work, read the current rules with: curl -s -H 'Accept: application/vnd.github.raw' '${RULES_URL}' Follow them over the rules loaded at session start, and tell Matt in one line that you read the updated rules.`;
 }
 
 try {
