@@ -86,9 +86,12 @@ chat replies, not just files.
   reports come to it. Don't use /compact as a cost cut: it adds a full
   read and can drop early instructions.
 - Session names, the same in every repo:
-  - Lead: `Lead N: <topic>`, where `<topic>` matches the plan file name
-    and N counts leads per plan file. The plan file's section for that
-    lead is headed `## Lead N`.
+  - Lead: `Lead N: <Main Topic>`, where `<Main Topic>` is the project in
+    plain title-case words (for example `Tutoring Apps`, `Buyer
+    Simulation`), not a file slug. The plan file states it on its first
+    line (`Main topic: Tutoring Apps`) so every successor uses the same
+    words. N counts leads per plan file, and the plan file's section for
+    that lead is headed `## Lead N`.
   - Child: `Child N.M: <step>`, M counting the children of Lead N. The
     status block row for that child uses `N.M <step>`.
   - Exactly these forms: the label, a space, the numbers, a colon, a
