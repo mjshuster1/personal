@@ -233,6 +233,13 @@ affected. Tested 2026-09-27:
 - Shell (`curl`, scripts) follows the current setting. When `WebFetch` is
   blocked but `curl` is not, read pages with
   `curl -sL https://r.jina.ai/<full-url>` or plain `curl -sL <url>`.
+- `r.jina.ai` refuses anonymous requests from cloud containers ("bad IP
+  reputation", a 401 from Jina itself, seen 2026-11-15). It needs Matt's
+  Jina key saved as a network secret on the environment
+  (`request_credential` for `r.jina.ai`, bearer); the proxy adds it, so
+  plain `curl` works and no script reads a variable. If a session gets
+  that 401, ask for the key with `request_credential`; don't report the
+  source as unreachable first.
 - Connectors go through Anthropic's MCP proxy and are not subject to the
   egress policy.
 
@@ -250,7 +257,8 @@ repo's keys) gets two things in the same step, or its sessions run
 without these rules: the Default's setup script, which installs this
 repo, and a `request_credential` for `api.github.com` with read access to
 `mjshuster1/personal`. The tutoring-apps environment, created Nov 13
-without either, ran on no rules.
+without either, ran on no rules. It also gets a `request_credential`
+for `r.jina.ai` (Matt's Jina key), so web reads work there.
 
 ## Dead ends
 
