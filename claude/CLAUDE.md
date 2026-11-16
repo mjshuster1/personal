@@ -99,9 +99,11 @@ chat replies, not just files.
     11:". Child titles leave the topic out because children are filed
     under their lead.
 - How a lead works with Matt and its children:
-  - Questions to Matt one at a time: recommendation first, plain words,
-    lettered options with the recommended one marked. If he answers "A"
-    with several open, take it for the latest and ask the next.
+  - Questions to Matt grouped in one message, not sent one by one as they
+    come up (Matt, 2026-11-16): each with the recommendation first, plain
+    words, lettered options with the recommended one marked, and numbered
+    so he can answer "1A 2B". Keep working on whatever doesn't depend on
+    an answer.
   - Before saying a child waits on Matt, check it with `get_session` (and
     `list_events` if its summary looks stale); never infer it from silence.
   - Every brief tells the child to hold its turn with a foreground wait

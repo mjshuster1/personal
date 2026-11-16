@@ -1,6 +1,6 @@
 # Skills and agents inventory
 
-Updated: 2026-11-07
+Updated: 2026-11-16
 Page: https://claude.ai/artifact/1L6onUFELu2jmU1F3ReLzT
 
 Source of truth for the page. Build it with `node inventory-page.js` and republish to the URL above.
@@ -128,7 +128,7 @@ Live in cuepri-workspace/.claude/skills/. Load only in sessions that start in th
   - Not for: Choosing between options you already have. That is expert-panel.
 
 ## Your agents in the consultant workspace [yours]
-Live in consultant-workspace/.claude/agents/. They run only in that repo. All are read-only. The review panel rules in its AGENTS.md say when each is required.
+Live in consultant-workspace/.claude/agents/. They run only in that repo. All are read-only. Its sixth panel agent, matt-proxy, is user-level (below). The review panel rules in its AGENTS.md say when each is required.
 
 - consulting-expert | Adversarial senior consultant. Reviews outward drafts, prices, scope, call prep and recommendations. | opus
   - Use when: Before anything goes outward from the consulting work: drafts, prices, scope, call prep.
@@ -136,9 +136,6 @@ Live in consultant-workspace/.claude/agents/. They run only in that repo. All ar
 - prospect-voice | Simulated behavioral health owner-operator reading your work as the buyer. Output is [opinion, simulated], never evidence. | opus
   - Use when: You want the buyer's reaction before a draft or offer goes out.
   - Returns: How a behavioral health owner-operator would read it, labeled opinion, simulated. Never evidence.
-- matt-proxy | Answers one question: would you accept this, given your hours, skills, risk appetite and stop rule. A proxy, never your decision. | sonnet
-  - Use when: Checking whether you would accept a plan given your hours, skills, risk appetite and stop rule.
-  - Returns: A yes or no with reasons. A proxy, never your decision.
 - implementation-architect | For every technical idea: simplest version, build-nothing alternative, costs in hours and dollars, vendor facts with verification status. | opus
   - Use when: Any technical idea in the consulting work.
   - Returns: The simplest version, a build-nothing alternative, cost in hours and dollars, vendor facts marked verified or not.
@@ -149,13 +146,17 @@ Live in consultant-workspace/.claude/agents/. They run only in that repo. All ar
   - Use when: Before asking anyone a question.
   - Returns: Whether the repo already answers it, what decision it changes, who should answer, and narrower wording.
 
-## Your agent at user level [yours]
-Lives in the personal repo, under agents/. Installed into ~/.claude/agents/ by install.js.
+## Your agents at user level [yours]
+Live in the personal repo, under agents/. Installed into ~/.claude/agents/ by install.js.
 
 - karpathy-structural-review | Reviews any structural change (new repo, folder, automation, removal) against the LLM-wiki principles and the repo’s own rules. Will recommend removal. | no model set
   - Use when: Before any new repo, submodule, top-level folder, automation or routine, or removing or renaming one. Required by your rules.
   - Try: "Run the structural review on adding a handoffs/ folder."
   - Returns: A verdict on whether it is justified now, drifts, duplicates or bloats. Will recommend removal.
+- matt-proxy | Stands in for you on a call in any repo: would you accept this, which tier a call is in, and, when a proposal clashes with an earlier decision, the case for keeping it first. A proxy, never your decision. | sonnet
+  - Use when: A call the repo's rules don't plainly cover, a draft or plan to check against your written constraints, or a conflict with an earlier decision.
+  - Try: "Run matt-proxy in conflict mode on replacing the batch-deploy rule."
+  - Returns: A verdict with quoted rules, the tier, a log line, and any question for you. Keep, amend or a proposal; never decides what is yours.
 
 ## Built-in agents
 Ship with Claude Code. Available in every session.
