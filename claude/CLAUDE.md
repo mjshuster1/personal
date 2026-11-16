@@ -145,6 +145,10 @@ classes were backtested in tutoring-apps (2026-11-16).
 - **Citation gate.** A tier-1 call names its class and quotes the repo line
   or dated decision it follows or bends. If it needs judgment no class
   plainly covers, it isn't tier 1.
+- **When Matt's own request conflicts** with a decision or goal he already
+  stated (in this file, the repo's rules or its decisions log), say so in
+  one sentence, quoting the earlier line, before doing it. Then do what he
+  asks; if it crosses a hard line, stop and ask first (tier 3).
 - **Questions to Matt** go together in one message, not one by one as they
   come up: each with the recommendation first, plain words, lettered
   options with the recommended one marked, numbered so he can answer
