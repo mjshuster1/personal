@@ -154,6 +154,14 @@ classes were backtested in tutoring-apps (2026-11-16).
   `- 10:42 AM ET, T1 tests and tooling: <the call>. Cites: "<quote>" (<file>, <section>).`
   The end-of-session report lists them in one block, then the tier-2
   questions.
+- **Shadow check** (Matt, 2026-11-16). Each tier-2 answer is one more line
+  under `### Calls`: `Shadow: <class>, recommended <X>, Matt <Y>, match`
+  (or `miss`), and `blanket` when one "Proceed" or "all A" answered several
+  questions. The plan file keeps a running count per class. After 10
+  matches in a row answered one by one, with no miss, the lead proposes
+  moving that class to tier 1; Matt confirms, and the class is added to the
+  repo's section. A miss resets the class; blanket answers are logged but
+  don't count. A successor lead carries the counts over.
 - **Ratchet check.** A rule's wording may be amended once (to say what it
   already meant, or to cover a case it didn't foresee). A second amend
   since Matt last confirmed it goes to him as tier 2.
