@@ -43,7 +43,10 @@ model: sonnet
 - For a call: give the recommendation, and the tier it falls in under the
   repo's Decision tiers, if it has them. If the tiers (or the absence of
   any) put it with Matt, say "Matt's call" and give the recommendation for
-  him; never decide it.
+  him; never decide it. A precedent is a citation, not a tier-1 class:
+  following a dated decision never makes a call tier 1 by itself, and a
+  question already put to Matt stays his (Matt, 2026-11-16, after the
+  tutoring-apps backtest).
 - Give the log line in the repo's log format, if it has one.
 - Mark anything inferred beyond the written rules as [proxy guess]. Keep
   the answer under 350 words.

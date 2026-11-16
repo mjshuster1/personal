@@ -75,8 +75,16 @@ chat replies, not just files.
   and commits the plan, then starts the next child. Once a child's report
   is in, its work is pushed, and nothing in it waits on Matt, the lead
   archives it with `archive_session`. A child stops before a
-  risky change or deploy and asks Matt in its own session; a yes passed
-  along by the lead doesn't count. Post timestamped lines when each child
+  risky change or deploy, commits nothing, and sends the lead its diff as a
+  patch (`git diff`, split if over 60 KB) with its questions. The lead shows
+  Matt the diff in the lead's chat; on his yes there, the lead applies the
+  patch, reruns the child's tests, commits and pushes. Matt answers
+  everything in the lead; a yes relayed from the lead to a child still
+  doesn't count, because the commit happens where the yes was given
+  (Matt, 2026-11-16). Exception: where a repo's own rules let anything
+  that passes go out (tutoring-apps' "Ship fast, fix fast"), a deploy whose
+  every gate passed needs no yes; the child deploys and the lead lists it
+  in its end-of-session block (Matt, 2026-11-16). Post timestamped lines when each child
   starts and reports, as for background agents; if a child is quiet well
   past its expected time, tell Matt. When the lead's own context is large,
   it writes its handoff into the plan file, listing each running child's
