@@ -25,11 +25,11 @@ Session rules, hooks and agents, installed into `~/.claude/` by
 
 | file | what it does |
 |---|---|
-| `claude/CLAUDE.md` | user-level rules for every session: Eastern-time timestamps and background-agent updates, commit straight to the default branch, cheapest capable model per subtask, how web access works in cloud sessions |
+| `claude/CLAUDE.md` | user-level rules for every session: Eastern-time timestamps and background-agent updates, the decision tiers (who decides what, the calls log, code taste; each repo adds its own hard lines and gates), commit straight to the default branch, cheapest capable model per subtask, how web access works in cloud sessions |
 | `hooks/et-time.js` | on each message, gives Claude the current Eastern time and date; when the session context is 400k+ tokens and the cache is warm, adds one line telling Claude to write a handoff file to `handoffs/`. Once per session, also compares the rules this container loaded (`rules.sha`, written by `install.js`) with `claude/CLAUDE.md` on main and, if they differ, tells Claude to read the current rules from main. Reads the session transcript, whose format is internal to Claude Code, so that line is best-effort and fails silent (re-check steps are in the file header) |
 | `install.js` (permissions step) | allows four Composio tools (search, get schemas, manage connections, multi-execute) without a prompt, merged into `~/.claude/settings.json` and never replacing other rules. Multi-execute also runs writes, so read-only (sends only from `skills/sick-day` or when Matt asks) is enforced by `skills/composio-google`, not by a permission |
 | `agents/karpathy-structural-review.md` | the structural reviewer `claude/CLAUDE.md` says to run before any structural change; carries its own copy of the pattern it checks against |
-| `agents/matt-proxy.md` | stands in for Matt on a call in any repo (2026-11-16): an everyday mode (a verdict or recommendation and its tier) and a conflict mode (argues for the old decision first; keep, amend or propose). Reads the repo's live AGENTS.md and decisions log, holds no project facts; a repo lists its own inputs (consultant-workspace's AGENTS.md, Review panel). Replaces consultant-workspace's copy |
+| `agents/matt-proxy.md` | stands in for Matt on a call in any repo (2026-11-16): an everyday mode (a verdict or recommendation and its tier) and a conflict mode (argues for the old decision first; keep, amend or propose). Reads the user-level decision tiers in `claude/CLAUDE.md`, then the repo's live AGENTS.md and decisions log; holds no project facts; a repo lists its own inputs (consultant-workspace's AGENTS.md, Review panel). Replaces consultant-workspace's copy |
 
 | file | what it does |
 |---|---|

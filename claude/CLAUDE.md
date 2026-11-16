@@ -107,11 +107,7 @@ chat replies, not just files.
     11:". Child titles leave the topic out because children are filed
     under their lead.
 - How a lead works with Matt and its children:
-  - Questions to Matt grouped in one message, not sent one by one as they
-    come up (Matt, 2026-11-16): each with the recommendation first, plain
-    words, lettered options with the recommended one marked, and numbered
-    so he can answer "1A 2B". Keep working on whatever doesn't depend on
-    an answer.
+  - Questions to Matt: grouped in one message, as in Decision tiers.
   - Before saying a child waits on Matt, check it with `get_session` (and
     `list_events` if its summary looks stale); never infer it from silence.
   - Every brief tells the child to hold its turn with a foreground wait
@@ -122,6 +118,52 @@ chat replies, not just files.
     plan.
 - Pick the model before the job and keep it. Switching models mid-chat
   re-reads the whole chat at full price.
+
+## Decision tiers
+
+Who decides what, in every repo (Matt, 2026-11-16). A session or lead reads
+these tiers and its repo's own section and decides itself. Each repo's
+section names its own tier-2 and tier-3 examples, hard lines, gates and
+where calls are logged. Call the `matt-proxy` agent only for a conflict with
+an earlier decision, or a call the tiers don't plainly cover. The tier-1
+classes were backtested in tutoring-apps (2026-11-16).
+
+- **Tier 1: decide, log, keep going.** Sequencing and timing of the
+  session's own work (never the order or pace in which users or clients get
+  a change: tier 2); naming and wording no one outside the session sees;
+  tests and tooling (risky changes still need Matt's yes); deferrals of work
+  already queued or planned (when, not whether: deferring or cutting scope
+  is tier 2). A precedent is a citation, not a tier-1 class.
+- **Tier 2: ask Matt at the end of the session.** Reversing or amending one
+  of Matt's calls, unless it blocks; small design calls inside an approved
+  design; scope, priority and anything a user, client or reader sees;
+  anything the tiers don't plainly cover, with matt-proxy's recommendation.
+  Keep working on what doesn't depend on the answer; don't ship what does.
+- **Tier 3: stop and ask Matt now.** Only when blocked, or when a call
+  touches the repo's hard lines, someone's data or money, or what its
+  section says is hard to undo.
+- **Citation gate.** A tier-1 call names its class and quotes the repo line
+  or dated decision it follows or bends. If it needs judgment no class
+  plainly covers, it isn't tier 1.
+- **Questions to Matt** go together in one message, not one by one as they
+  come up: each with the recommendation first, plain words, lettered
+  options with the recommended one marked, numbered so he can answer
+  "1A 2B". Keep working on whatever doesn't depend on an answer.
+- **Log.** Each tier-1 or matt-proxy call is one line under `### Calls` in
+  the plan file (in the end-of-session reply when there is none):
+  `- 10:42 AM ET, T1 tests and tooling: <the call>. Cites: "<quote>" (<file>, <section>).`
+  The end-of-session report lists them in one block, then the tier-2
+  questions.
+- **Ratchet check.** A rule's wording may be amended once (to say what it
+  already meant, or to cover a case it didn't foresee). A second amend
+  since Matt last confirmed it goes to him as tier 2.
+- **New decision entries** use the repo's log format if it has one (for
+  example a `Revisit if` line); otherwise add `Why:` (in Matt's words when
+  he gave one) and `Holds while:`. No backfill; never guess an older
+  entry's reason.
+- **When writing code:** one way to do each thing; small files a new
+  session understands fast; delete freely once work is done; content and
+  config as data over code; few dependencies, bent only for dev-only tools.
 
 ## Practices page
 
