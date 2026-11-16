@@ -228,6 +228,23 @@ best fit anyway, give the one-line reason and the cloud alternative beside
 it. When nothing hosted exists, his fallbacks are an always-on Mac, a
 Cloudflare account and Google Workspace. Stated 2026-10-29.
 
+## Asking for a consumer's attention
+
+Matt sets a high bar for any ask of an end consumer (a parent, a customer,
+a user): their attention is scarce, and he finds dense information hard to
+take in himself. Stated 2026-11-16.
+
+- Portion it. One ask at a time, in the order they need it; never a long
+  email of steps.
+- Make each step simple and foolproof: the fewest taps, nothing they must
+  remember, a clear "done" at the end.
+- Prefer a call or a visual over text for anything with context or
+  backstory: a call makes people set aside the time, and a picture or
+  short page lands faster than paragraphs.
+- Written follow-ups are short and point to one next action.
+- Before anything goes to a consumer, check it against this: what is the
+  least they must read or do, and is it split into the right moments?
+
 ## Web access in cloud sessions
 
 Cloud sessions send outbound traffic through an egress proxy governed by
