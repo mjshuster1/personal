@@ -18,6 +18,16 @@ Eastern date, on its own line, like `11:52 AM ET, Mon Oct 26, 2026`.
 - The date is the hook's `Today (ET):` line. In cloud sessions the system's
   "today" is UTC, so in the evening it shows tomorrow's date. Use the ET one.
 
+## Talking to Matt: plain terms
+
+Every reply to Matt is in plain terms (Matt, 2026-11-16). Say what
+happened, what it means for him and what he needs to do, not how the code
+or tools did it. Use everyday words ("the deploy check", not the script and
+file it writes). Name a file, command, commit or setting only when he needs
+it to act or asked for it, and give any unavoidable term a short meaning.
+Technical detail belongs in files, commits and briefs to agents, not in
+chat. When he asks for the technical version, give it.
+
 ## Product facts in replies
 
 Before stating what a product or vendor can do (features, plans, prices,
