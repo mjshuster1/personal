@@ -118,6 +118,16 @@ chat replies, not just files.
     under their lead.
 - How a lead works with Matt and its children:
   - Questions to Matt: grouped in one message, as in Decision tiers.
+  - Fable advises leads only (Matt, 2026-11-16). A session can't turn on
+    its own advisor and the setting doesn't reach a new cloud session, so
+    when a lead pastes a Kickstart prompt it adds one line under the block:
+    "In the new session, type `/advisor fable` first, then paste this."
+    Every lead Kickstart prompt says, after the rules check: "If you have
+    no advisor tool, tell Matt in one line to type /advisor fable." No
+    child gets an advisor. Until 2026-11-23, each advisor call is one line
+    under `### Calls`: `- <time> ET, advisor: <topic>; changed: <what
+    changed, or nothing>`. Then the lead tallies them for Matt to keep or
+    drop.
   - Before saying a child waits on Matt, check it with `get_session` (and
     `list_events` if its summary looks stale); never infer it from silence.
   - Every brief tells the child to hold its turn with a foreground wait
