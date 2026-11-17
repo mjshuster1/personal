@@ -91,6 +91,22 @@ function permissions() {
   log(`permissions allow: ${ALLOW.length} Composio tools`);
 }
 
+// Fable as the advisor in every new session (Matt, 2026-11-17). /advisor only
+// lasts for one container, and a chat locks its advisor at its first turn,
+// so it has to be set before Claude starts. Children are told in their brief
+// not to call it.
+function advisor() {
+  const file = path.join(home, 'settings.json');
+  let s = {};
+  if (fs.existsSync(file)) {
+    try { s = JSON.parse(fs.readFileSync(file, 'utf8')); }
+    catch (e) { log(`settings.json didn't parse, advisor not set: ${e.message}`); return; }
+  }
+  s.advisorModel = 'fable';
+  fs.writeFileSync(file, JSON.stringify(s, null, 2) + '\n');
+  log('advisor: fable');
+}
+
 function agents() {
   if (inPlace) return;
   const src = path.join(repo, 'agents');
@@ -102,7 +118,7 @@ function agents() {
   log('agents copied');
 }
 
-for (const step of [rules, hooks, permissions, agents]) {
+for (const step of [rules, hooks, permissions, advisor, agents]) {
   try { fs.mkdirSync(home, { recursive: true }); step(); }
   catch (e) { log(`${step.name} failed: ${e.message}`); }
 }
