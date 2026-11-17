@@ -30,6 +30,17 @@ Scenarios, 12 months out, on FY2028 consensus EPS of $15.93 (year ending Jan 202
 
 Weighted value about $156. Odds higher in a year about 48% at $151.09. Odds moved Nov 17 after the Ramp data (business AI spend flat since August; top 1% of companies are 80% of spend on OpenAI and Anthropic, mostly venture-backed).
 
+Two-year view (added Nov 17; on the page as a switch), on FY2029 consensus EPS of
+$21.34 (38 analysts, read Oct 19, before the scandal): Huang returns 5%, $299 to
+$341; Clean break 22%, $264 to $325; Slow grind 31%, $157 to $198; Company
+implicated 10%, $120 to $150; AI spending turns 32%, $83 to $130. Weighted about
+$183; odds higher in two years about 58%.
+
+Price at 1:40 PM ET Nov 17: $153.51. Headlines that day, not read in full: Huang
+says he is open to returning; WSJ says Heidrick is running the CEO search and
+Arm's CEO is a candidate. Matt asked whether to buy before the call; advice given
+was no more than a third before, rest after.
+
 Fork odds: January-quarter guide holds near $124B 60%; board answers Bessent by
 Nov 25 85%; stock low in the Dec 3 to mid-Dec window 55%; below $140 before
 year-end 40%, below $125 20%; above $163 at Dec 31 35%; Lutnick out by mid-Feb
