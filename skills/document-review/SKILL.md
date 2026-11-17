@@ -1,6 +1,6 @@
 ---
 name: document-review
-description: Review a document in four passes, always in this order - substance, slop, bloat, clarity. Use whenever Matt asks to review, audit, critique, tighten, edit, or give feedback on a document, draft, memo, email, proposal, deck text, one-pager, or page, in any project.
+description: Review a document in four passes, always in this order - substance, slop, bloat, clarity - plus an optional deep review (goals, section jobs, reverse outline, sentence by sentence) for documents that drive a decision. Use whenever Matt asks to review, audit, critique, tighten, edit, or give feedback on a document, draft, memo, email, proposal, deck text, one-pager, or page, in any project.
 ---
 
 # Document review
@@ -58,6 +58,31 @@ What remains, made easy to read.
 - Edits made to fit a page: re-read them for what they now say.
 - Anything that renders (page, Artifact, PDF): check the rendered output at
   full width and phone width for one-word last lines, headings included.
+
+## Deep review (optional)
+
+For documents that drive a decision or go outside the company, or when Matt
+asks for a deep review. Run it after the four passes, in this order, top layer
+first. If a higher layer finds a structural problem, still do the lower
+layers, but mark a sentence "moot if X" when a structural fix would delete it.
+
+1. **Goals.** State the document's goals in one line each, in the author's
+   words.
+2. **Section jobs.** Give each section a one-line job and the goal it serves.
+   Flag sections with no job, two jobs, or the wrong position.
+3. **Reverse outline.** Write one line per paragraph, table or bullet group,
+   then read only those lines. Flag points that are off-job, out of order,
+   repeated, or that leave a gap in the argument. Name any trade-off the
+   document implies but never states.
+4. **Sentences.** Test each sentence: serves its paragraph's point; new, not
+   said elsewhere; connects to the sentence before (known information first,
+   new last); supported by a source; missed if cut. Report failures only, with
+   a replacement.
+
+Report layers 1 to 3 as short lists and layer 4 as a table (location, test
+failed, problem, replacement, fix or consider), then the top three changes by
+impact. It costs two to three times a four-pass review, so don't run it on
+every draft.
 
 ## Output
 

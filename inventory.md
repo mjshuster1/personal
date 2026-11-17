@@ -1,6 +1,6 @@
 # Skills and agents inventory
 
-Updated: 2026-11-16
+Updated: 2026-11-17
 Page: https://claude.ai/artifact/1L6onUFELu2jmU1F3ReLzT
 
 Source of truth for the page. Build it with `node inventory-page.js` and republish to the URL above.
@@ -22,6 +22,7 @@ Edited in the personal repo, under skills/. Installed into every session by the 
   - Use when: You want feedback on a memo, email, proposal, page or deck text.
   - Try: "Review this one-pager."
   - Order: Substance first, then slop, bloat and clarity. Required before any client-facing publish in the Cuepri workspace.
+  - Deep review: For documents that drive a decision or go outside the company. Checks goals, each section's job, a one-line outline per paragraph, then every sentence. Two to three times the cost. Try: "Deep review the adoption case."
 - reader-sim | Simulates busy readers getting an email for the first time and scores how much lands: phone inbox, one screen at a time, time budget, interruptions, memory quiz. Costly, so only when asked. | about 650k tokens a run
   - Use when: An important email has to land with busy readers, and you want proof before it goes out.
   - Try: "Run the reader sim on this email to clinical directors."
