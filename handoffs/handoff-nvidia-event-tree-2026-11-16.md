@@ -16,7 +16,7 @@ call 5:00 PM ET).
 - Published the event tree page: https://claude.ai/artifact/8M7xcS8DJikAz4xtmM4Aht
   (source was in the session scratchpad, which is gone; read the artifact to edit it).
 
-## The model as it stands (price $155.50 at 3:40 PM ET Nov 16)
+## The model as it stands (Nov 16 close $156.14; after hours $155.60 at 7:59 PM ET)
 
 Scenarios, 12 months out, on FY2028 consensus EPS of $15.93 (year ending Jan 2028):
 
