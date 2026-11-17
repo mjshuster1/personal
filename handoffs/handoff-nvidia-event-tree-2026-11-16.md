@@ -10,25 +10,25 @@ call 5:00 PM ET).
 ## Done
 
 - Read the Nov 16 Prof G Markets episode (YouTube NWqr0nv4UyQ) in full, plus two
-  of the three earlier episodes (G4ixfbVQzBc, r50vLZ7aF1k).
+  all three earlier episodes (G4ixfbVQzBc, r50vLZ7aF1k, EowC_gXjpVA).
 - Eight research agents: other podcasts, chip exports, Nvidia numbers, financing
   chain, Southeast Asia supply, Washington sequence, precedent timelines.
 - Published the event tree page: https://claude.ai/artifact/8M7xcS8DJikAz4xtmM4Aht
   (source was in the session scratchpad, which is gone; read the artifact to edit it).
 
-## The model as it stands (Nov 16 close $156.14; after hours $155.60 at 7:59 PM ET)
+## The model as it stands (Nov 16 close $156.14; $151.09 at 10:46 AM ET Nov 17, before earnings)
 
 Scenarios, 12 months out, on FY2028 consensus EPS of $15.93 (year ending Jan 2028):
 
 | Scenario | Odds | EPS | Multiple | Price | Midpoint |
 |---|---|---|---|---|---|
-| Clean break | 27% | $15.30 | 12x to 15x | $184 to $229 | $206.5 |
-| Slow grind | 35% | $14.30 | 9.5x to 11.5x | $136 to $165 | $150 |
+| Clean break | 26% | $15.30 | 12x to 15x | $184 to $229 | $206.5 |
+| Slow grind | 34% | $14.30 | 9.5x to 11.5x | $136 to $165 | $150 |
 | Company implicated | 12% | $13.40 | 8x to 9.5x | $107 to $127 | $117 |
-| AI spending turns | 20% | $9.50 to $11 | 9x to 12x | $86 to $132 | $107 |
+| AI spending turns | 22% | $9.50 to $11 | 9x to 12x | $86 to $132 | $107 |
 | Huang returns | 6% | $15.93 | 13x to 15x | $207 to $239 | $223 |
 
-Weighted value about $157. Odds higher in a year about 45%.
+Weighted value about $156. Odds higher in a year about 48% at $151.09. Odds moved Nov 17 after the Ramp data (business AI spend flat since August; top 1% of companies are 80% of spend on OpenAI and Anthropic, mostly venture-backed).
 
 Fork odds: January-quarter guide holds near $124B 60%; board answers Bessent by
 Nov 25 85%; stock low in the Dec 3 to mid-Dec window 55%; below $140 before
@@ -49,8 +49,7 @@ to about $121.
    collect receivables (was about 60, up from 45), supply commitments (was $279B),
    inventory (was $31.6B), and the geography table. Tell Matt which row of the
    buy table he is in, then update odds and republish the page to the same URL.
-2. Optional, only if Matt asks: pull the unread Prof G episode (EowC_gXjpVA) and
-   proper transcripts of other podcasts.
+2. Optional, only if Matt asks: proper transcripts of other podcasts.
 
 ## Decisions
 
