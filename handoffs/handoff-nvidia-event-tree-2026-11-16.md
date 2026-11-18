@@ -53,6 +53,25 @@ a fear-driven drop to $135 with the guide intact; rest spread through
 mid-December; $135 is a first-tranche level, since the precedent median points
 to about $121.
 
+## After earnings (Nov 18, 9:40 AM ET; supersedes the odds above where they differ)
+
+Same session did the earnings update, so step 1 under Left is done. Price $156.55.
+Q3 FY27: revenue $115.8B (guide $108B), non-GAAP EPS $2.68; Q4 guide $130B plus or
+minus 3% (Street about $124B), gross margin guided to 71% to 72%. FY28 consensus
+EPS now $16.44. Inventory $39.7B, supply commitments $390B, DSO 64 days,
+guarantees $118B. Board: no intent to reinstate Huang; Heidrick search, inside
+and outside candidates; national security committee formed. WSJ reports an SEC
+civil probe (unconfirmed). 10-Q with geography is still to come.
+
+One-year odds and prices now: Clean break 30%, $191 to $239; Slow grind 35%, $141
+to $170; Company implicated 12%, $110 to $131; AI spending turns 21%, $86 to
+$132; Huang returns 2%, $214 to $247. Weighted about $160, 48% odds of higher.
+Two-year odds: Clean break 25, Slow grind 31, Implicated 10, AI turns 32, Huang 2;
+weighted about $183. CEO fork: outsider 55, Kress 33, other insider 10, Huang 2.
+Matt is in row 1 of the buy table (guide held, price under $170): first third to
+half, limit order. Next checks: the 10-Q, Bessent's deadline (about Nov 25), Dec 1
+and 2 House interviews, Senate Banking date.
+
 ## Left
 
 1. After the Nov 17 release: read it against the model. Check the January-quarter
