@@ -79,7 +79,11 @@ chat replies, not just files.
   handoff folder, if it has one) and does none of the work. For each step it
   posts the brief (goal, steps, what done means), then starts a child with
   that brief, on the model and effort the step needs (Token cost), passing
-  the child's title to `create_session` as `title`. Children
+  the child's title to `create_session` as `title`. A child is for a step
+  that changes code, runs the full tests, deploys or needs Matt's yes; a
+  step that only reads and reports (a review, search or check) goes to a
+  sub-agent from the lead instead, with no brief, child or report (Matt,
+  2026-11-17). Children
   that touch the same logic run one at a time. A child ends by sending the
   lead a report in the handoff fields with `send_message`. The lead updates
   and commits the plan, then starts the next child. Once a child's report
