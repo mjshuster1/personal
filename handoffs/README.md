@@ -1,7 +1,8 @@
 # handoffs
 
 Session handoffs: a file a fresh chat reads to pick up where a long session
-stopped (goal, done, left, decisions, what failed, then a Kickstart prompt).
+stopped (goal, done, left, decisions, what failed, files touched, how to
+check it works, then a Kickstart prompt).
 Working state, not a record: this is not a wiki or an archive.
 
 - The time hook asks for one at about 400k tokens of context. It names the

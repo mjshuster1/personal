@@ -59,8 +59,8 @@ chat replies, not just files.
   commit.
 - A session that starts from a handoff file deletes it once the work is picked
   up, and commits the delete.
-- A handoff means a handoff file (goal, done, left, decisions, what failed)
-  and a Kickstart prompt that Matt pastes into a new top-level session. A
+- A handoff means a handoff file (goal, done, left, decisions, what failed,
+  files touched, how to check it works: the exact commands) and a Kickstart prompt that Matt pastes into a new top-level session. A
   session never starts its own successor with `create_session`: each one
   files the new session under the one that started it, and a chain of
   handoffs hit a limit at 8 on Nov 13 (observed, not documented). `create_session` is only for a lead starting its children.
